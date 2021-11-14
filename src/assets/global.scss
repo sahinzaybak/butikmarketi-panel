@@ -1,0 +1,285 @@
+@import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200;300;400;600;700;900&display=swap");
+
+* {
+  &,
+  &:before,
+  &:after {
+    box-sizing: border-box;
+  }
+}
+
+*,
+*:focus {
+  outline: none;
+}
+
+html {
+  box-sizing: border-box;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  overflow-x: hidden !important;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  padding: 0;
+  margin: 0;
+  font-family: "Source Sans Pro", sans-serif !important;
+  font-weight: 500;
+  letter-spacing: 0.2px;
+}
+
+blockquote,
+dl,
+dd,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+figure,
+p,
+pre,
+fieldset,
+ul,
+ol,
+menu,
+form {
+  margin: 0;
+}
+
+button,
+fieldset,
+iframe {
+  border: 0;
+}
+
+fieldset,
+ul,
+ol,
+button,
+menu {
+  padding: 0;
+}
+
+ul {
+  list-style: none;
+}
+
+textarea {
+  resize: none;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+td {
+  padding: 0;
+}
+
+a,
+a:hover,
+a:focus,
+a:active {
+  text-decoration: none;
+  color: inherit;
+}
+
+a,
+a:focus,
+button,
+button:focus {
+  outline: none !important;
+  text-decoration: none;
+}
+
+a,
+button {
+  user-select: none;
+  transition: all 0.3s ease-in-out;
+}
+
+button {
+  cursor: pointer;
+  background: none;
+  box-shadow: none;
+  border: none;
+}
+
+img {
+  max-width: 100%;
+}
+
+section {
+  padding: 80px 0;
+}
+
+label {
+  margin-bottom: 0;
+}
+
+.custom-container {
+  position: relative;
+  max-width: 1200px;
+  width: 95%;
+  margin: 0 auto;
+  z-index: 99;
+  &.product {
+    @media (max-width: 600px) {
+      overflow: hidden;
+    }
+  }
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.ant-btn.button {
+  border: 0;
+  padding: 20px 26px;
+  display: flex;
+  align-items: center;
+  background-color: #67cf26;
+  color: white;
+  border-radius: 4px;
+  margin-left: auto;
+  transition: all 0.3s;
+  font-weight: 600;
+  &:hover,
+  &:focus {
+    background-color: #5fc320;
+    color: white;
+  }
+}
+
+.ant-row.ant-form-item {
+  margin-bottom: 16px;
+}
+
+input{
+  height: 50px;
+}
+
+.wrapper {
+  margin-left: 280px;
+  &-header {
+    height: 100px;
+    padding: 30px;
+    display: flex;
+    align-items: center;
+    h3 {
+      font-weight: 800;
+      margin-bottom: 0;
+      font-size: 36px;
+    }
+  }
+  &-main {
+    height: 100vh;
+    background-color: whitesmoke;
+    padding: 30px;
+    &__item {
+
+      background-color: white;
+      padding: 25px;
+      box-shadow: 0rem 0.3125rem 0.3125rem 0rem #977abb0d;
+      border-radius: 12px;
+    }
+  }
+}
+
+
+.inputfile {
+  /* visibility: hidden etc. wont work */
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+}
+.inputfile:focus + label {
+  /* keyboard navigation */
+  outline: 1px dotted #000;
+  outline: -webkit-focus-ring-color auto 5px;
+}
+.inputfile + label * {
+  pointer-events: none;
+}
+
+.ant-upload.ant-upload-select,.ant-upload-list-picture-card-container{
+  height: 215px;
+  border-radius: 12px;
+  // width: 170px;
+  width: 15.9%;
+  &:hover{
+    border-color: #9a63bf;
+  }
+}
+.ant-upload-list-picture-card .ant-upload-list-item {
+  padding: 0 !important;;
+  border-radius: 12px !important;
+}
+
+.ant-upload-list-picture-card .ant-upload-list-item-thumbnail{
+  opacity: 1 !important;
+  img{
+    object-fit: cover !important;
+    border-radius: 12px;
+  }
+}
+
+.ant-radio-input:focus + .ant-radio-inner{
+  box-shadow: none;
+}
+
+.ant-radio-checked::after{
+  border:none;
+}
+
+.ant-radio-inner::after{
+  background-color: #9c27b0;
+}
+.ant-radio-checked .ant-radio-inner {
+  border-color: #7c2c89 !important;
+}
+
+.ant-collapse > .ant-collapse-item > .ant-collapse-header {
+  font-size: 16px;
+  font-weight: 800;
+  color:#9c5da7;
+  background-color: #9c5da70d;
+}
+
+.ant-collapse {
+  border: 1px solid #9c5da733;
+  border-radius: 12px;
+}
+
+
+.ant-collapse-content {
+  border-top: 1px solid #e7dbea;
+}
+
+.ant-collapse > .ant-collapse-item{
+  border-bottom: 1px solid #e7dbea;
+}
+
+
+.ant-collapse > .ant-collapse-item:last-child{
+  border-bottom: 0;
+}
+
+.ant-collapse > .ant-collapse-item > .ant-collapse-header .ant-collapse-arrow {
+  color: #9d27b0;
+  position: relative;
+  top: -2px;
+}
+
+.ant-modal-content{
+border-radius: 12px;
+}

@@ -1,0 +1,98 @@
+.add-product {
+  &__box {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 270px;
+    background-color: whitesmoke;
+    border-radius: 12px;
+    cursor: pointer;
+    border: 1px solid #e3e3e3;
+    transition: all 0.3s;
+    img {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+    &:hover {
+      border-color: #a974cd;
+      .add-product__top {
+        opacity: 1;
+      }
+    }
+  }
+  &__top {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    transition: all 0.3s;
+    opacity: 0.6;
+    .add-icons {
+      font-size: 50px;
+      color: #a974cd;
+    }
+    p {
+      font-size: 16px;
+      color: #a974cd;
+    }
+  }
+  &__modal {
+    &-item {
+      position: relative;
+      width: 204px;
+      padding: 8px 14px;
+      h6 {
+        font-size: 16px;
+        margin-bottom: 20px;
+        font-weight: 600;
+        color: #4c4c4c;
+      }
+      &:after {
+        content: "";
+        position: absolute;
+        width: 1px;
+        height: 100%;
+        background-color: #f7f7f7;
+        right: 0;
+        top: 0;
+      }
+      &.last {
+        &:after {
+          display: none;
+        }
+        .ant-radio-group {
+          height: 190px;
+          overflow-x: scroll;
+          padding-right: 26px;
+        }
+      }
+    }
+    &-title {
+      color: #404040;
+      border-bottom: 1px solid #ededed;
+      margin-bottom: 20px;
+      padding-bottom: 6px;
+      font-size: 24px;
+      font-weight: 900;
+    }
+    .ant-radio-group.ant-radio-group-solid {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+  &__prop {
+    padding: 8px 14px;
+    &-filters {
+      h6 {
+        font-size: 16px;
+        margin-bottom: 8px;
+        font-weight: 600;
+        color: #4c4c4c;
+        border-bottom: 1px solid #4c4c4c;
+        width: max-content;
+      }
+    }
+  }
+}
