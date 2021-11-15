@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
 import "antd/dist/antd.css";
 import "../assets/scss/add-product.scss";
-import { Upload, Modal, Radio, Space, Input, Button, Form, Collapse } from "antd";
+import { Upload, Modal, Radio, Checkbox, Space, Input, Button, Form, Collapse } from "antd";
 import { PlusOutlined } from '@ant-design/icons';
 
 //actions
@@ -13,6 +13,8 @@ const AddProduct = () => {
   const dispatch = useDispatch();
   const [defaultFileList, setDefaultFileList] = useState([]);
   const [progress, setProgress] = useState(0);
+  const [allUploadImageList, setAllUploadImageList] = useState("");
+  const [modalIndexActiveImageLink, setModalIndexActiveImageLink] = useState("");
   const [preview, setPreview] = useState(false);
   const [mainCategoryValue, setMainCategoryValue] = useState(false);
   const [subCategoryValue, setSubCategoryValue] = useState(false);
@@ -20,7 +22,6 @@ const AddProduct = () => {
   const [activeProductInfoEntryTab, setActiveProductInfoEntryTab] = useState("disabled");
   const [activeCollapseKey, setActiveCollapseKey] = useState(['1']);
   const { Panel } = Collapse;
-
 
   const uploadImage = async options => {
     const { onSuccess, onError, file, onProgress } = options;
@@ -39,9 +40,11 @@ const AddProduct = () => {
 
     fmData.append("image", file);
     try {
-      const res = await axios.post("https://api.imgbb.com/1/upload?key=8b372dc4d088f787a0516386606606eb", fmData, config);
-      if (res != null)
+      const res = await axios.post("https://api.imgbb.com/1/upload?key=8b372dc4d088f787a0516386606606eb", fmData, config)
+      if (res != null) {
         onSuccess("Ok");
+        setAllUploadImageList([...allUploadImageList, res.data.data.display_url]);
+      }
     } catch (err) { onError({ err }) }
   };
 
@@ -90,6 +93,11 @@ const AddProduct = () => {
     console.log('Failed:', errorInfo);
   };
 
+  const openPreviewModal = (file) => {
+    setPreview(true)
+    setModalIndexActiveImageLink(allUploadImageList[defaultFileList.indexOf(file)])
+  };
+
   return (
     <div className="add-product">
       <Upload
@@ -97,7 +105,7 @@ const AddProduct = () => {
         customRequest={uploadImage}
         onChange={handleOnChange}
         multiple={true}
-        onPreview={() => { setPreview(true) }}
+        onPreview={openPreviewModal}
         listType="picture-card"
         defaultFileList={defaultFileList}>
         {
@@ -112,9 +120,11 @@ const AddProduct = () => {
         visible={preview}
         footer={null}
         width={780}
+        centered
         onCancel={() => {
           setPreview(false)
         }}>
+
         <div className="add-product__modal">
           <h4 className="add-product__modal-title">Ürün özellikleri ekle</h4>
           <Collapse accordion activeKey={activeCollapseKey} onChange={callback}>
@@ -160,43 +170,65 @@ const AddProduct = () => {
                 </div>
               </div>
             </Panel>
+
             <Panel header="Ürününüzün bilgilerini giriniz" key="2" collapsible={activeProductInfoEntryTab}>
               <div className="add-product__prop">
                 <Form onFinish={onFinish} onFinishFailed={onFinishFailed} autoComplete="off">
                   <div className="row">
-                    <div className="col-md-8">
-                      <Form.Item name="productName" rules={[{ required: true, message: 'Please input your username!' }]}>
-                        <Input placeholder="Ürün İsmi" />
-                      </Form.Item>
+                    <div className="col-md-3">
+                      <div className="add-product__image">
+                        <img src={modalIndexActiveImageLink} alt="" />
+                      </div>
                     </div>
-                    <div className="col-md-4">
-                      <Form.Item name="price" rules={[{ required: true, message: 'Please input your password!' }]}>
-                        <Input placeholder="Ürün Fiyatı (₺)" />
+
+                    <div className="col-md-9">
+                      <div className="row">
+                        <div className="col-md-8">
+                          <Form.Item name="productName" rules={[{ required: true, message: 'Please input your username!' }]}>
+                            <Input placeholder="Ürün İsmi" />
+                          </Form.Item>
+                        </div>
+                        <div className="col-md-4">
+                          <Form.Item name="price" rules={[{ required: true, message: 'Please input your password!' }]}>
+                            <Input placeholder="Ürün Fiyatı (₺)" />
+                          </Form.Item>
+                        </div>
+                      </div>
+                      <Form.Item name="desc" rules={[{ required: true, message: 'Please input your password!' }]}>
+                        <Input placeholder="Ürün Açıklaması" />
+                      </Form.Item>
+                      <Form.Item name="link" rules={[{ required: true, message: 'Please input your password!' }]}>
+                        <Input placeholder="Ürün İnstagram Linki" />
                       </Form.Item>
                     </div>
                   </div>
-                  <Form.Item name="desc" rules={[{ required: true, message: 'Please input your password!' }]}>
-                    <Input placeholder="Ürün Açıklaması" />
-                  </Form.Item>
 
                   <div className="add-product__prop-filters mt-4 pt-2">
                     <div className="row">
                       {optionsList != "" && optionsList.filter.map((option, index) => (
                         <div className="col-md-3" key={index}>
                           <h6>{option.main_title_text}</h6>
-                          <Radio.Group defaultValue={mainCategoryValue}>
-                            <Space direction="vertical">
-                              {option.filter_sub.map((option_sub, index) => (
-                                <Radio value={option_sub.title} key={index}>{option_sub.title}</Radio>
-                              ))}
-
-                            </Space>
-                          </Radio.Group>
+                          {option.main_title == "gender" ?
+                            <Radio.Group defaultValue={mainCategoryValue}>
+                              <Space direction="vertical">
+                                {option.filter_sub.map((option_sub, index) => (
+                                  <Radio value={option_sub.title} key={index}>{option_sub.title}</Radio>
+                                ))}
+                              </Space>
+                            </Radio.Group>
+                            :
+                            <Checkbox.Group defaultValue={mainCategoryValue}>
+                              <Space direction="vertical">
+                                {option.filter_sub.map((option_sub, index) => (
+                                  <Checkbox value={option_sub.title} key={index}>{option_sub.title}</Checkbox>
+                                ))}
+                              </Space>
+                            </Checkbox.Group>
+                          }
                         </div>
                       ))}
                     </div>
                   </div>
-
                   <Button type="primary" htmlType="submit">Gönder</Button>
                 </Form>
               </div>
