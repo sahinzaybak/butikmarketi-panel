@@ -4,11 +4,12 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    width: 200px;
     height: 270px;
-    background-color: whitesmoke;
+    background-color:white;
     border-radius: 12px;
     cursor: pointer;
-    border: 1px solid #e3e3e3;
+    border: 2px dashed #e3e3e3;
     transition: all 0.3s;
     img {
       position: absolute;
@@ -21,6 +22,15 @@
       .add-product__top {
         opacity: 1;
       }
+    }
+  }
+  &__card{
+    height: 215px;
+    border-radius: 12px;
+    border: 1px dashed #d9d9d9;
+    width: 15.9%;
+    &:hover{
+      border-color: #9a63bf;
     }
   }
   &__top {
@@ -48,6 +58,11 @@
         margin-bottom: 20px;
         font-weight: 600;
         color: #4c4c4c;
+      }
+      p {
+        color: #824d8b;
+        font-size: 9.3px;
+        margin-top: 12px;
       }
       &:after {
         content: "";
@@ -101,15 +116,23 @@
     }
   }
   &__image {
-    height: 175px;
+    height: 180px;
     width: 100%;
     position: relative;
+    border: 1px dashed #d9d9d9;
+    border-radius: 6px;
+    transition: all .3s;
+    cursor: pointer;
+    top: -2px;
     img {
       object-fit: cover;
       width: 100%;
       height: 100%;
       border-radius: 6px;
       border: 1px solid #e7dbea;
+    }
+    &:hover{
+      border-color: #9a63bf;
     }
   }
 }
