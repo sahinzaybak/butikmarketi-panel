@@ -3,6 +3,7 @@ const initialState = {
   subCategoryList: [],
   categoryTitleList: [],
   optionsList: [],
+  selectedCategorySlug:''
 };
 
 export default (state = initialState, action) => {
@@ -26,6 +27,11 @@ export default (state = initialState, action) => {
       return {
         ...state,
         optionsList: action.payload,
+      };
+    case "FETCH_SELECTED_CATEGORY_SLUG":
+      return {
+        ...state,
+        selectedCategorySlug: action.payload,
       };
 
     default:

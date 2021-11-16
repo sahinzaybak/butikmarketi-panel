@@ -1,15 +1,23 @@
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { Radio, Checkbox, Space, Input, Button, Form } from "antd";
 import ImageUploading from "react-images-uploading";
 import { PlusOutlined } from '@ant-design/icons';
 import axios from "axios";
 
+//action
+import { fetchAddProduct } from "../../../store/actions/add-product";
+
 const PanelForm = ({ optionsList }) => {
+  const dispatch = useDispatch();
   const [mainCategoryValue, setMainCategoryValue] = useState(false);
   const [images, setImages] = useState();
-  const maxNumber = 69;
+  const [selectedRadio, setSelectedRadio] = useState();
+  const [selectedCheckSizes, setSelectedCheckSizes] = useState([]);
+  const [selectedCheckColors, setSelectedCheckColors] = useState([]);
+  const [selectedImage, setSelectedImage] = useState([]);
 
+  let selectedCategorySlug = useSelector((state) => state.addProduct.selectedCategorySlug); //Filter Listesi (Cinsiyet, Beden, Renk ..vs)
   const onChangeImageUpload = async (imageList) => {
     setImages(imageList);
     const fmData = new FormData();
@@ -18,24 +26,69 @@ const PanelForm = ({ optionsList }) => {
     try {
       const res = await axios.post("https://api.imgbb.com/1/upload?key=8b372dc4d088f787a0516386606606eb", fmData, config)
       if (res != null) {
-        console.log(res.data.data.display_url)
+        console.log(res)
+        setSelectedImage(res.data.data.display_url)
       }
     } catch (err) { }
   };
-  const onFinish = (values) => {
-    console.log('Success:', values);
+  const onChangeRadio = e => {
+    setSelectedRadio(e.target.value)
   };
 
-  const onFinishFailed = (errorInfo) => {
-    console.log('Failed:', errorInfo);
+  function onChangeCheck(e, title) {
+    if (title == "size") {
+      if (e.target.checked) {
+        setSelectedCheckSizes([
+          ...selectedCheckSizes,
+          { size_title: e.target.value },
+        ]);
+      } else {
+        // remove from list
+        setSelectedCheckSizes(
+          selectedCheckSizes.filter((size) => size.size_title !== e.target.value),
+        );
+      }
+    }
+    if (title == "color") {
+      if (e.target.checked) {
+        setSelectedCheckColors([
+          ...selectedCheckColors,
+          { color_title: e.target.value },
+        ]);
+      } else {
+        // remove from list
+        setSelectedCheckColors(
+          selectedCheckColors.filter((size) => size.color_title !== e.target.value),
+        );
+      }
+    }
+  }
+
+  const onFinishForm = (values) => {
+    dispatch(fetchAddProduct({
+      title: values.productName,
+      desc: values.desc,
+      price: values.price,
+      link: values.link,
+      image: selectedImage,
+      butik: "yesybutik",
+      butik_whatsapp: "yesybutik",
+      butik_image: "https://webizade.com/bm/img/butik-8.jpg",
+      category: selectedCategorySlug,
+      gender: selectedRadio,
+      size: selectedCheckSizes,
+      images: [],
+      comments: [],
+      colors: selectedCheckColors
+    }));
   };
 
   return (
     <div className="add-product__prop">
-      <Form onFinish={onFinish} onFinishFailed={onFinishFailed} autoComplete="off">
+      <Form onFinish={onFinishForm} autoComplete="off">
         <div className="row">
           <div className="col-md-3">
-            <ImageUploading value={images} onChange={onChangeImageUpload} vmaxNumber={maxNumber} vdataURLKey="data_url">
+            <ImageUploading value={images} onChange={onChangeImageUpload} vdataURLKey="data_url">
               {
                 ({ imageList, onImageUpload }) => (
                   <div className="add-product__image" onClick={onImageUpload}>
@@ -86,10 +139,9 @@ const PanelForm = ({ optionsList }) => {
               <>
                 {option.main_title == "price" ? "" :
                   <div className="col-md-4" key={index}>
-                    {option.main_tite}
                     <h6>{option.main_title_text}</h6>
                     {option.main_title == "gender" ?
-                      <Radio.Group defaultValue={mainCategoryValue}>
+                      <Radio.Group onChange={onChangeRadio} defaultValue={mainCategoryValue}>
                         <Space direction="vertical">
                           {option.filter_sub.map((option_sub, index) => (
                             <Radio value={option_sub.title} key={index}>{option_sub.title}</Radio>
@@ -100,9 +152,7 @@ const PanelForm = ({ optionsList }) => {
                       <Checkbox.Group defaultValue={mainCategoryValue}>
                         <Space direction="vertical">
                           {option.filter_sub.map((option_sub, index) => (
-                            <>
-                              <Checkbox value={option_sub.title} key={index}>{option_sub.title}</Checkbox>
-                            </>
+                            <Checkbox onChange={(e) => onChangeCheck(e, option.main_title)} value={option_sub.title} key={index}>{option_sub.title}</Checkbox>
                           ))}
                         </Space>
                       </Checkbox.Group>

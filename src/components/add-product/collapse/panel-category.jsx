@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { Radio, Space, } from "antd";
 
 //actions
-import {fetchSubCategory, fetchCategoryTitleList, fetchFilterOptions } from "../../../store/actions/add-product";
+import { fetchSubCategory, fetchCategoryTitleList, fetchFilterOptions } from "../../../store/actions/add-product";
 
 const PanelCategory = ({ mainCategoryList, subCategoryList, categoryTitleList }) => {
   const dispatch = useDispatch();
@@ -26,6 +26,7 @@ const PanelCategory = ({ mainCategoryList, subCategoryList, categoryTitleList })
   function selectedCategory(e) { // Kategori Seçimi (T-shirt, Pantolon, Etek ..vs)
     const catValue = e.target.defaultValue;
     setCategoryValue(catValue)
+    dispatch({ type: "FETCH_SELECTED_CATEGORY_SLUG", payload: e.target.slug }); //erkek-gomlek-x-12s
     dispatch(fetchFilterOptions(catValue)); //kategorileri getir.
   };
 
@@ -68,7 +69,7 @@ const PanelCategory = ({ mainCategoryList, subCategoryList, categoryTitleList })
             <Radio.Group onChange={selectedCategory} defaultValue={categoryValue}>
               <Space direction="vertical">
                 {categoryTitleList != "" && categoryTitleList.categories.map((category, index) => (
-                  <Radio value={category.title} defaultValue={category.filter_title} key={index}>{category.title}</Radio>
+                  <Radio value={category.title} defaultValue={category.filter_title} slug={category.slug} key={index}>{category.title}</Radio>
                 ))}
               </Space>
             </Radio.Group>

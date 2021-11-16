@@ -26,7 +26,7 @@ const Modals = ({ preview, onCancel }) => {
 
   useEffect(() => {
     if (optionsList != "") {
-      setIsActiveFormTab("enable") //form panelinin disabled kaldır.
+      setIsActiveFormTab("enable") //form tab'ının disabled kaldır, enabled yap.
       setActiveCollapseKey(2) //form tab'ını aç.
     }
   }, [optionsList]);
@@ -37,9 +37,7 @@ const Modals = ({ preview, onCancel }) => {
       footer={null}
       width={780}
       centered
-      destroyOnClose={true}
       onCancel={() => { onCancel() }}>
-
       <div className="add-product__modal">
         <h4 className="add-product__modal-title">Ürün özellikleri ekle</h4>
         <Collapse accordion activeKey={activeCollapseKey} onChange={(key) => setActiveCollapseKey(key)}>
@@ -49,13 +47,11 @@ const Modals = ({ preview, onCancel }) => {
               subCategoryList={subCategoryList}
               categoryTitleList={categoryTitleList} />
           </Panel>
-
           <Panel header="Ürününüzün bilgilerini giriniz" key="2" collapsible={isActiveFormTab}>
             <PanelForm optionsList={optionsList} />
           </Panel>
         </Collapse>
       </div>
-
     </Modal>
   );
 };

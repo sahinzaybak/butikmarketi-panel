@@ -43,3 +43,27 @@ export const fetchFilterOptions = (categoryTitle) => {
     });
   };
 }
+
+export const fetchAddProduct = (selectedValues) => {
+  debugger;
+  return async dispatch => {
+    await axios.post("http://localhost:3001/product" , {
+      title: selectedValues.title,
+      description: selectedValues.desc,
+      price: selectedValues.price,
+      link: selectedValues.link,
+      image: selectedValues.image,
+      butik: "yesybutik",
+      butik_whatsapp: "yesybutik",
+      butik_image: "https://webizade.com/bm/img/butik-8.jpg",
+      category: selectedValues.category,
+      gender: selectedValues.gender,
+      size: selectedValues.size,
+      images: [],
+      comments: [],
+      colors: selectedValues.colors
+    }).then(value => {   
+     console.log(value)
+    });
+  };
+}
