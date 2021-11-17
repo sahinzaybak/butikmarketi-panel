@@ -6,7 +6,7 @@
     justify-content: center;
     width: 200px;
     height: 270px;
-    background-color:white;
+    background-color: white;
     border-radius: 12px;
     cursor: pointer;
     border: 2px dashed #e3e3e3;
@@ -24,12 +24,12 @@
       }
     }
   }
-  &__card{
+  &__card {
     height: 215px;
     border-radius: 12px;
     border: 1px dashed #d9d9d9;
     width: 15.9%;
-    &:hover{
+    &:hover {
       border-color: #9a63bf;
     }
   }
@@ -101,7 +101,7 @@
     padding: 8px 14px;
     &-filters {
       h6 {
-        font-size: 16px;
+        font-size: 14px;
         margin-bottom: 8px;
         font-weight: 600;
         color: #4c4c4c;
@@ -109,20 +109,27 @@
         width: max-content;
       }
       .ant-checkbox-group {
-        height: 160px;
+        height: 190px;
         overflow-x: scroll;
         padding-right: 10px;
       }
     }
+    &-wrp{
+      background-color: white;
+    padding: 16px 16px;
+    border-radius: 6px;
+    border: 1px solid #efefef;
+    }
   }
   &__image {
-    height: 180px;
+    height: 42px;
     width: 100%;
     position: relative;
     border: 1px dashed #d9d9d9;
     border-radius: 6px;
-    transition: all .3s;
+    transition: all 0.3s;
     cursor: pointer;
+
     top: -2px;
     img {
       object-fit: cover;
@@ -131,8 +138,28 @@
       border-radius: 6px;
       border: 1px solid #e7dbea;
     }
-    &:hover{
+    &:hover {
       border-color: #9a63bf;
+    }
+  }
+}
+
+.upload__image {
+  &-wrapper {
+    .image-item {
+      height: 60px;
+      padding: 2px;
+    }
+    .cover {
+      height: 222px;
+      width: 100%;
+    }
+    img {
+      object-fit: cover;
+      width: 100%;
+      height: 100%;
+      border-radius: 6px;
+      border: 1px solid #e7dbea;
     }
   }
 }
