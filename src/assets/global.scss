@@ -161,8 +161,12 @@ label {
   margin-bottom: 16px;
 }
 
-input{
+input {
   height: 42px;
+}
+
+textarea{
+  height: 92px !important;
 }
 
 .wrapper {
@@ -183,7 +187,6 @@ input{
     background-color: whitesmoke;
     padding: 30px;
     &__item {
-
       background-color: white;
       padding: 25px;
       box-shadow: 0rem 0.3125rem 0.3125rem 0rem #977abb0d;
@@ -191,7 +194,6 @@ input{
     }
   }
 }
-
 
 .inputfile {
   /* visibility: hidden etc. wont work */
@@ -211,39 +213,44 @@ input{
   pointer-events: none;
 }
 
-.ant-upload.ant-upload-select,.ant-upload-list-picture-card-container{
+.ant-upload.ant-upload-select,
+.ant-upload-list-picture-card-container {
   height: 215px;
   border-radius: 12px;
   // width: 170px;
   width: 15.9%;
-  &:hover{
+  &:hover {
     border-color: #9a63bf;
   }
 }
 .ant-upload-list-picture-card .ant-upload-list-item {
-  padding: 0 !important;;
+  padding: 0 !important;
   border-radius: 12px !important;
 }
 
-.ant-upload-list-picture-card .ant-upload-list-item-thumbnail{
+.ant-upload-list-picture-card .ant-upload-list-item-thumbnail {
   opacity: 1 !important;
-  img{
+  img {
     object-fit: cover !important;
     border-radius: 12px;
   }
 }
 
-.ant-radio-input:focus + .ant-radio-inner,.ant-checkbox-input:focus + .ant-checkbox-inner{
+.ant-radio-input:focus + .ant-radio-inner,
+.ant-checkbox-input:focus + .ant-checkbox-inner {
   box-shadow: none;
 }
-.ant-radio-checked::after,.ant-checkbox-checked::after{
-  border:none;
+.ant-radio-checked::after,
+.ant-checkbox-checked::after {
+  border: none;
 }
 
-.ant-checkbox-wrapper:hover .ant-checkbox-inner, .ant-checkbox:hover .ant-checkbox-inner, .ant-checkbox-input:focus + .ant-checkbox-inner{
+.ant-checkbox-wrapper:hover .ant-checkbox-inner,
+.ant-checkbox:hover .ant-checkbox-inner,
+.ant-checkbox-input:focus + .ant-checkbox-inner {
   border-color: #7c2c89;
 }
-.ant-radio-inner::after{
+.ant-radio-inner::after {
   background-color: #9c27b0;
 }
 .ant-radio-checked .ant-radio-inner {
@@ -258,7 +265,7 @@ input{
 .ant-collapse > .ant-collapse-item > .ant-collapse-header {
   font-size: 16px;
   font-weight: 800;
-  color:#9c5da7;
+  color: #9c5da7;
   background-color: #9c5da70d;
 }
 
@@ -267,17 +274,15 @@ input{
   border-radius: 12px;
 }
 
-
 .ant-collapse-content {
   border-top: 1px solid #e7dbea;
 }
 
-.ant-collapse > .ant-collapse-item{
+.ant-collapse > .ant-collapse-item {
   border-bottom: 1px solid #e7dbea;
 }
 
-
-.ant-collapse > .ant-collapse-item:last-child{
+.ant-collapse > .ant-collapse-item:last-child {
   border-bottom: 0;
 }
 
@@ -287,6 +292,6 @@ input{
   top: -2px;
 }
 
-.ant-modal-content{
-border-radius: 12px;
+.ant-modal-content {
+  border-radius: 12px;
 }

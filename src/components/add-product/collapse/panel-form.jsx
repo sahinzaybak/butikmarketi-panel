@@ -1,15 +1,18 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Radio, Checkbox, Space, Input, Button, Form } from "antd";
+import { Modal, Radio, Checkbox, Space, Input, Button, Form, Spin } from "antd";
 import ImageUploading from "react-images-uploading";
 import { PlusOutlined } from '@ant-design/icons';
 import axios from "axios";
-
+import { store } from 'react-notifications-component';
+import { ExclamationCircleOutlined,LoadingOutlined } from '@ant-design/icons';
+import { IsAddedProduct } from '../../../helpers/helpers'
 //action
 import { fetchAddProduct } from "../../../store/actions/add-product";
 
 const PanelForm = ({ optionsList }) => {
   const dispatch = useDispatch();
+  const { confirm } = Modal;
   const [mainCategoryValue, setMainCategoryValue] = useState(false);
   const [images, setImages] = useState([]);
   const [selectedRadio, setSelectedRadio] = useState();
@@ -17,25 +20,31 @@ const PanelForm = ({ optionsList }) => {
   const [selectedCheckColors, setSelectedCheckColors] = useState([]);
   const [imageSlider, setImageSlider] = useState([]);
   const [coverImage, setCoverImage] = useState(0);
+  const [isAllUploadImage, setIsAllUploadImage] = useState(true);
 
   let selectedCategorySlug = useSelector((state) => state.addProduct.selectedCategorySlug); //Filter Listesi (Cinsiyet, Beden, Renk ..vs)
   let imageSliderArray = []
+
   const onChangeImageUpload = (imageList) => {
+    setIsAllUploadImage(false)
     setImages(imageList);
     const fmData = new FormData();
     const config = { headers: { "content-type": "multipart/form-data" } };
-
-    //Seçilen resimleri aktar
-    imageList.forEach(async (item) => {
+    imageList.forEach((item) => { //Seçilen resimleri aktar
       fmData.append("image", item.file);
       try {
-        await axios.post("https://api.imgbb.com/1/upload?key=8b372dc4d088f787a0516386606606eb", fmData, config).then(value => {
+        axios.post("https://api.imgbb.com/1/upload?key=8b372dc4d088f787a0516386606606eb", fmData, config).then(value => {
           if (value != null) {
             imageSliderArray.push({ image_slider: value.data.data.display_url })
             setImageSlider(imageSliderArray)
+            if (imageSliderArray.length == imageList.length) { //resimlerin hepsi yüklendikten sonra..
+              setIsAllUploadImage(true)
+            }
           }
         })
       } catch (err) { console.log(err) }
+
+
     });
 
   };
@@ -71,27 +80,61 @@ const PanelForm = ({ optionsList }) => {
   }
 
   const onFinishForm = (values) => {
-    dispatch(fetchAddProduct({
-      title: values.productName,
-      desc: values.desc,
-      price: values.price,
-      link: values.link,
-      image: coverImage != "" ? coverImage : imageSlider[0],
-      butik: "yesybutik",
-      butik_whatsapp: "yesybutik",
-      butik_image: "https://webizade.com/bm/img/butik-8.jpg",
-      category: selectedCategorySlug,
-      gender: selectedRadio,
-      size: selectedCheckSizes,
-      images: imageSlider,
-      comments: [],
-      colors: selectedCheckColors
-    }));
+    confirm({
+      title: 'Ürününüz yayınlanıyor..',
+      icon: <ExclamationCircleOutlined />,
+      centered: true,
+      content: 'Ürün bilgileriniz doğru ise, ürününüzü yayınlamak istiyor musunuz?',
+      okText: 'Evet',
+      cancelText: 'Hayır',
+      onOk() {
+        return new Promise((resolve, reject) => {
+          setTimeout(Math.random() > 1000 ? resolve : reject, 1000);
+          setTimeout(async () => {
+            await dispatch(fetchAddProduct({
+              title: values.productName,
+              desc: values.desc,
+              price: values.price,
+              link: values.link,
+              image: coverImage != "" ? coverImage.image_slider : imageSlider[0].image_slider,
+              butik: "yesybutik",
+              butik_whatsapp: "yesybutik",
+              butik_image: "https://webizade.com/bm/img/butik-8.jpg",
+              category: selectedCategorySlug,
+              gender: selectedRadio,
+              size: selectedCheckSizes,
+              images: imageSlider,
+              comments: [],
+              colors: selectedCheckColors
+            })).then(() => {
+              if (IsAddedProduct) { //yeni ürün eklendiğinde (helpers)
+                store.addNotification({
+                  message: "Tebrikler, ürününüz başarıya yayınladı :)",
+                  type: "success",
+                  insert: "top",
+                  width: 300,
+                  showIcon: true,
+                  container: "top-right",
+                  animationIn: ["animate__animated", "animate__fadeIn"],
+                  animationOut: ["animate__animated", "animate__fadeOut"],
+                  dismiss: {
+                    duration: 2000,
+                    onScreen: false
+                  },
+                })
+              }
+            })
+          }, 1000);
+        }).catch(() => false);
+      },
+      onCancel() {
+        console.log('Cancel');
+      },
+    });
   };
 
   function selectCoverImage(index) {
     setCoverImage(imageSlider[index])
-    
   };
 
   return (
@@ -107,19 +150,21 @@ const PanelForm = ({ optionsList }) => {
                       <div className="add-product__image" onClick={onImageUpload}>
                         <div className="d-flex align-items-center justify-content-center h-100">
                           <PlusOutlined />
-                          <h6 className="ml-2">Ürün Resmi Ekle</h6>
+                          <h6 className="ml-2">Ürün Resimleri Ekle</h6>
                         </div>
                       </div>
                       <div className="upload__image-wrapper h-100">
                         <div className="row no-gutters">
                           <div className="cover mb-2 mt-2">
-                            {imageList != "" && coverImage == "" &&
-                              <img src={imageList[0].dataURL} alt="" />
-                            }
-                            {coverImage != "" &&
-                              <img src={coverImage.image_slider} alt="" />
-                            }
+                            {imageList != "" && coverImage == "" && <img src={imageList[0].dataURL} alt="" />}
+                            {coverImage != "" && <img src={coverImage.image_slider} alt="" />}
+
                           </div>
+                          {!isAllUploadImage &&
+                              <div className="add-product__loading">
+                              <Spin indicator={<LoadingOutlined className="spin" style={{ fontSize: 40 }} spin />} />
+                              </div>
+                          }
                           {imageList && imageList.map((image, index) => (
                             <div className="col-md-3">
                               <div key={index} className="image-item" onClick={() => selectCoverImage(index)}>
@@ -131,7 +176,6 @@ const PanelForm = ({ optionsList }) => {
                       </div>
                     </div>
                   </>
-
                 )
               }
             </ImageUploading>
@@ -151,7 +195,7 @@ const PanelForm = ({ optionsList }) => {
               </div>
             </div>
             <Form.Item name="desc" rules={[{ required: true, message: 'Please input your password!' }]}>
-              <Input placeholder="Ürün Açıklaması" />
+              <Input.TextArea placeholder="Ürün Açıklaması" />
             </Form.Item>
             <Form.Item name="link" rules={[{ required: true, message: 'Please input your password!' }]}>
               <Input placeholder="Ürün İnstagram Linki" />
@@ -189,8 +233,6 @@ const PanelForm = ({ optionsList }) => {
             </div>
           </div>
         </div>
-
-
         <Button type="primary" htmlType="submit">Gönder</Button>
       </Form>
     </div>

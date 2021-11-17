@@ -3,7 +3,8 @@ const initialState = {
   subCategoryList: [],
   categoryTitleList: [],
   optionsList: [],
-  selectedCategorySlug:''
+  selectedCategorySlug: "",
+  addedProduct: [],
 };
 
 export default (state = initialState, action) => {
@@ -32,6 +33,11 @@ export default (state = initialState, action) => {
       return {
         ...state,
         selectedCategorySlug: action.payload,
+      };
+    case "ADDED-PRODUCT":
+      return {
+        ...state,
+        addedProduct: action.payload,
       };
 
     default:

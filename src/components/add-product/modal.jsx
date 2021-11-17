@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Modal, Collapse } from "antd";
-
+import { IsAddedProduct } from '../../helpers/helpers'
 //Actions
-import { fetchMainCategory} from "../../store/actions/add-product";
+import { fetchMainCategory } from "../../store/actions/add-product";
 
 //Components
 import PanelCategory from './collapse/panel-category'
 import PanelForm from './collapse/panel-form'
 
-const Modals = ({ preview, onCancel }) => {
+const Modals = ({ preview, onCancel, destroyForm }) => {
   const dispatch = useDispatch();
   const { Panel } = Collapse;
   const [activeCollapseKey, setActiveCollapseKey] = useState(['1']);
@@ -31,15 +31,24 @@ const Modals = ({ preview, onCancel }) => {
     }
   }, [optionsList]);
 
+  let isAddedProduct = IsAddedProduct() //yeni ürün eklendiğinde
+  useEffect(() => {
+    if (isAddedProduct) {
+      setActiveCollapseKey(1)
+      setIsActiveFormTab("disabled") //form tab'ının disabled yap.
+    }
+  }, [isAddedProduct]);
+
   return (
     <Modal
       visible={preview}
       footer={null}
+      destroyOnClose={destroyForm}
       width={780}
       centered
       onCancel={() => { onCancel() }}>
       <div className="add-product__modal">
-        <h4 className="add-product__modal-title">Ürün özellikleri ekle</h4>
+        <h4 className="add-product__modal-title">Ürün Ekle</h4>
         <Collapse accordion activeKey={activeCollapseKey} onChange={(key) => setActiveCollapseKey(key)}>
           <Panel header="Ürününüz için bir kategori belirleyin" key="1">
             <PanelCategory

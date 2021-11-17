@@ -12,7 +12,9 @@ import rootReducer from './store/reducers/rootReducer';
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import Header from './layout/header.jsx';
-
+import ReactNotification from 'react-notifications-component'
+import 'react-notifications-component/dist/theme.css'
+import 'animate.css/animate.min.css';
 const store = createStore(
 	rootReducer,
 	applyMiddleware(createPromise(), thunk, createLogger())
@@ -21,6 +23,7 @@ const store = createStore(
 ReactDOM.render(
     <BrowserRouter> 
       <Provider store={store}> 
+      <ReactNotification />
         <Header />
         <App />
       </Provider>
