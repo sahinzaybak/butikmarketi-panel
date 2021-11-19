@@ -1,16 +1,20 @@
 import axios from "axios";
+
 export const login = (form_values) => (dispatch) => {
-  try {axios.post("http://localhost:3001/butik/login", {
-        instagram_name: form_values.instagram_user_name,
+    axios.post("http://localhost:3001/butik/login", {
+        username: form_values.user_name,
         password: form_values.password,
-      })
-      .then((response) =>
+      }).then((response) =>
         dispatch({
           type: "AUTH_INFO",
-          payload: response.data.data,
+          payload: response.data,
         })
-      );
-  } catch (err) {
-    console.log(err);
-  }
+      ).catch((error) => {
+        if(error.response.status == 401){
+          dispatch({
+            type: "AUTH_INFO",
+            payload:error.response.data
+          })
+        }
+    })
 };

@@ -7,7 +7,7 @@ export default (state = initialState, action) => {
     case "AUTH_INFO":
       return{
         ...state,
-        authInfo: action.payload
+        authInfo: action.payload,
       }
     default:
 		

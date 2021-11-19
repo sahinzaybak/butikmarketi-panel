@@ -1,5 +1,5 @@
 import AddProduct from '../components/add-product'
-const Index = (props) => {
+const Index = () => {
   return (
     <div className="wrapper add-product">
       <div className="wrapper-header">

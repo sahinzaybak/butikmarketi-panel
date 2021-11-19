@@ -1,28 +1,53 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router";
 import '../assets/scss/login.scss'
 import logo from '../assets/images/logo-2.png'
 import { Form, Input, Button } from 'antd';
+import { store } from 'react-notifications-component';
 
 //actions
 import { login } from "../store/actions/auth";
 
 const Login = () => {
+  const isInitialMount = useRef(true);
   const dispatch = useDispatch();
   const history = useHistory();
-  let authInfo = useSelector((state) => state.auth.authInfo);
 
-  if (authInfo != "") {
-    localStorage.setItem('instagram_hash', authInfo.info[0].login[0].instagram_hash)
-    localStorage.setItem('instagram_variable', authInfo.info[0].login[0].instagram_variable)
-    localStorage.setItem('user_token', authInfo.token)
-    history.push("/panel")
-  }
-
+  // Form Submit
   const onFinish = (form_values) => {
     dispatch(login(form_values));
   };
+  
+  //Giriş yapıldı mı ?
+  let isLogin;
+  let authInfo = useSelector((state) => state.auth.authInfo);
+  if (authInfo != "") isLogin = authInfo.data.status == 200 ? true : false
+  useEffect(() => {
+    if (isInitialMount.current) isInitialMount.current = false; // ilk sayfa yüklendiğinde useEffect çalışmasın. Mount & Update ayrımı => useRef()
+    else {
+      store.addNotification({
+        message: authInfo.data.message,
+        type: isLogin ? "success" : "danger",
+        insert: "top",
+        width: isLogin ? 280 : 420,
+        showIcon: true,
+        container: "top-right",
+        animationIn: ["animate__animated", "animate__fadeIn"],
+        animationOut: ["animate__animated", "animate__fadeOut"],
+        dismiss: { duration: 2000, onScreen: false },
+      })
+      if (isLogin) {
+        setTimeout(() => {
+          history.push("/panel")
+          localStorage.setItem("butik_token", authInfo.data.token)
+          localStorage.setItem("butik_info", JSON.stringify(authInfo.data.info[0]))
+        }, 2500);
+      }
+    }
+  }, [authInfo]);
+
+
   return (
     <div className="login">
       <div className="login-logo">
@@ -31,10 +56,10 @@ const Login = () => {
       <div className="login-wrp">
         <h2 className="login-title mb-1">Giriş Yapın.</h2>
         <p className="login-desc">Butik ürünlerinizi daha fazla satmak için butikmarketi dünyasına giriş yapın.</p>
-        <div className="login-form">
+        <div className="login-form mt-4">
           <Form onFinish={onFinish} autoComplete="off">
-            <Form.Item name="instagram_user_name" rules={[{ required: true, message: 'Lütfen butiğinizin instagram kullanıcı adını girin.' }]}>
-              <Input placeholder="Butiğinizin İnstagram Kullanıcı Adı" />
+            <Form.Item name="user_name" rules={[{ required: true, message: 'Lütfen kullanıcı adınızı girin.' }]}>
+              <Input placeholder="Kullanıcı Adınız" />
             </Form.Item>
             <Form.Item name="password" rules={[{ required: true, message: 'Lütfen şifrenizi girin.' }]}>
               <Input placeholder="Şifre" />

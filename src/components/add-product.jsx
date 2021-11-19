@@ -10,7 +10,7 @@ const AddProduct = () => {
   const [preview, setPreview] = useState(false);
   const [destroyForm, setDestroyForm] = useState(false);
 
-  let isAddedProduct = IsAddedProduct() //yeni ürün eklendiğinde
+  let isAddedProduct = IsAddedProduct() //yeni ürün eklendiğinde true yada false.
   useEffect(() => {
     if (isAddedProduct) {
       setPreview(false)
