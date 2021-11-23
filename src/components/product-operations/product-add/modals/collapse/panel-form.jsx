@@ -1,14 +1,14 @@
-import React, { useState, useEffect } from "react";
+import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Modal, Radio, Checkbox, Space, Input, Button, Form, Spin } from "antd";
+import { PlusOutlined, ExclamationCircleOutlined, LoadingOutlined } from '@ant-design/icons';
 import ImageUploading from "react-images-uploading";
-import { PlusOutlined } from '@ant-design/icons';
 import axios from "axios";
 import { store } from 'react-notifications-component';
-import { ExclamationCircleOutlined,LoadingOutlined } from '@ant-design/icons';
-import { IsAddedProduct } from '../../../helpers/helpers'
-//action
-import { fetchAddProduct } from "../../../store/actions/add-product";
+import { IsAddedProduct } from '../../../../../helpers/helpers'
+
+//Actions
+import { fetchAddProduct } from "../../../../../store/actions/add-product";
 
 const PanelForm = ({ optionsList }) => {
   const dispatch = useDispatch();
@@ -23,9 +23,11 @@ const PanelForm = ({ optionsList }) => {
   const [isAllUploadImage, setIsAllUploadImage] = useState(true);
 
   let selectedCategorySlug = useSelector((state) => state.addProduct.selectedCategorySlug); //Filter Listesi (Cinsiyet, Beden, Renk ..vs)
+  let selectedCategoryFilterTitle = useSelector((state) => state.addProduct.selectedCategoryFilterTitle); //Filter Listesi (Cinsiyet, Beden, Renk ..vs)
   let imageSliderArray = []
 
-  const onChangeImageUpload = (imageList) => {
+  //Resim yükleme
+  function onChangeImageUpload(imageList) {
     setIsAllUploadImage(false)
     setImages(imageList);
     const fmData = new FormData();
@@ -43,15 +45,15 @@ const PanelForm = ({ optionsList }) => {
           }
         })
       } catch (err) { console.log(err) }
-
-
     });
-
-  };
-  const onChangeRadio = e => {
-    setSelectedRadio(e.target.value)
   };
 
+  //Kapak fotoğrafı seç
+  function selectCoverImage(index) {
+    setCoverImage(imageSlider[index])
+  };
+
+  //Beden ve Renk seçimi => seçili checkboxlar
   function onChangeCheck(e, title) {
     if (title == "size") {
       if (e.target.checked) {
@@ -79,7 +81,8 @@ const PanelForm = ({ optionsList }) => {
     }
   }
 
-  const onFinishForm = (values) => {
+  //Formu gönder
+  function onFinishForm(values) {
     confirm({
       title: 'Ürününüz yayınlanıyor..',
       icon: <ExclamationCircleOutlined />,
@@ -97,33 +100,30 @@ const PanelForm = ({ optionsList }) => {
               price: values.price,
               link: values.link,
               image: coverImage != "" ? coverImage.image_slider : imageSlider[0].image_slider,
-              butik: "yesybutik",
-              butik_whatsapp: "yesybutik",
-              butik_image: "https://webizade.com/bm/img/butik-8.jpg",
               category: selectedCategorySlug,
+              filterTitle: selectedCategoryFilterTitle,
               gender: selectedRadio,
               size: selectedCheckSizes,
               images: imageSlider,
               comments: [],
               colors: selectedCheckColors
-            })).then(() => {
-              if (IsAddedProduct) { //yeni ürün eklendiğinde (helpers)
-                store.addNotification({
-                  message: "Tebrikler, ürününüz başarıya yayınladı :)",
-                  type: "success",
-                  insert: "top",
-                  width: 300,
-                  showIcon: true,
-                  container: "top-right",
-                  animationIn: ["animate__animated", "animate__fadeIn"],
-                  animationOut: ["animate__animated", "animate__fadeOut"],
-                  dismiss: {
-                    duration: 2000,
-                    onScreen: false
-                  },
-                })
-              }
-            })
+            }))
+            if (IsAddedProduct) { //yeni ürün eklendiğinde (helpers)
+              store.addNotification({
+                message: "Tebrikler, ürününüz başarıya yayınladı :)",
+                type: "success",
+                insert: "top",
+                width: 300,
+                showIcon: true,
+                container: "top-right",
+                animationIn: ["animate__animated", "animate__fadeIn"],
+                animationOut: ["animate__animated", "animate__fadeOut"],
+                dismiss: {
+                  duration: 2000,
+                  onScreen: false
+                },
+              })
+            }
           }, 1000);
         }).catch(() => false);
       },
@@ -131,10 +131,6 @@ const PanelForm = ({ optionsList }) => {
         console.log('Cancel');
       },
     });
-  };
-
-  function selectCoverImage(index) {
-    setCoverImage(imageSlider[index])
   };
 
   return (
@@ -161,9 +157,9 @@ const PanelForm = ({ optionsList }) => {
 
                           </div>
                           {!isAllUploadImage &&
-                              <div className="add-product__loading">
+                            <div className="add-product__loading">
                               <Spin indicator={<LoadingOutlined className="spin" style={{ fontSize: 40 }} spin />} />
-                              </div>
+                            </div>
                           }
                           {imageList && imageList.map((image, index) => (
                             <div className="col-md-3">
@@ -209,7 +205,7 @@ const PanelForm = ({ optionsList }) => {
                       <div className="col-md-4" key={index}>
                         <h6>{option.main_title_text}</h6>
                         {option.main_title == "gender" ?
-                          <Radio.Group onChange={onChangeRadio} defaultValue={mainCategoryValue}>
+                          <Radio.Group onChange={(e) => setSelectedRadio(e.target.value)} defaultValue={mainCategoryValue}>
                             <Space direction="vertical">
                               {option.filter_sub.map((option_sub, index) => (
                                 <Radio value={option_sub.title} key={index}>{option_sub.title}</Radio>
@@ -236,7 +232,6 @@ const PanelForm = ({ optionsList }) => {
         <Button type="primary" htmlType="submit">Gönder</Button>
       </Form>
     </div>
-
   );
 };
 

@@ -4,7 +4,9 @@ const initialState = {
   categoryTitleList: [],
   optionsList: [],
   selectedCategorySlug: "",
+  selectedCategoryFilterTitle:"",
   addedProduct: [],
+  openProductAddFormTab: false,
 };
 
 export default (state = initialState, action) => {
@@ -29,15 +31,21 @@ export default (state = initialState, action) => {
         ...state,
         optionsList: action.payload,
       };
-    case "FETCH_SELECTED_CATEGORY_SLUG":
+    case "SELECTED_CATEGORY_INFO":
       return {
         ...state,
-        selectedCategorySlug: action.payload,
+        selectedCategorySlug: action.payload.slug,
+        selectedCategoryFilterTitle: action.payload.filterTitle
       };
     case "ADDED-PRODUCT":
       return {
         ...state,
         addedProduct: action.payload,
+      };
+    case "OPEN_ADD_PRODUCT_FORM_TAB":
+      return {
+        ...state,
+        openProductAddFormTab: action.payload,
       };
 
     default:

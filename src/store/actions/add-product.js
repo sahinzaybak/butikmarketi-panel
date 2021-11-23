@@ -59,22 +59,63 @@ export const fetchFilterOptions = (categoryTitle) => {
 export const fetchAddProduct = (selectedValues) => {
   return async (dispatch) => {
     await axios
-      .post("http://localhost:3001/product", {
-        title: selectedValues.title,
-        description: selectedValues.desc,
-        price: selectedValues.price,
-        link: selectedValues.link,
-        image: selectedValues.image,
-        butik: "yesybutik",
-        butik_whatsapp: "yesybutik",
-        butik_image: "https://webizade.com/bm/img/butik-8.jpg",
-        category: selectedValues.category,
-        gender: selectedValues.gender,
-        size: selectedValues.size,
-        images: selectedValues.images,
-        comments: [],
-        colors: selectedValues.colors,
-      })
+      .post(
+        "http://localhost:3001/product",
+        {
+          title: selectedValues.title,
+          description: selectedValues.desc,
+          price: selectedValues.price,
+          link: selectedValues.link,
+          image: selectedValues.image,
+          category: selectedValues.category,
+          filter_title: selectedValues.filterTitle,
+          gender: selectedValues.gender,
+          size: selectedValues.size,
+          images: selectedValues.images,
+          comments: [],
+          colors: selectedValues.colors,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("butik_token")}`,
+          },
+        }
+      )
+      .then((value) => {
+        if (value.status == 200) {
+          dispatch({
+            type: "ADDED-PRODUCT",
+            payload: value,
+          });
+        }
+      });
+  };
+};
+
+export const fetchUpdateProduct = (selectedValues, productId) => {
+  return async (dispatch) => {
+    await axios
+      .put(
+        `http://localhost:3001/product/update/${productId}`,
+        {
+          title: selectedValues.title,
+          description: selectedValues.desc,
+          price: selectedValues.price,
+          link: selectedValues.link,
+          image: selectedValues.image,
+          category: selectedValues.category,
+          gender: selectedValues.gender,
+          size: selectedValues.size,
+          images: selectedValues.images,
+          comments: [],
+          colors: selectedValues.colors,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("butik_token")}`,
+          },
+        }
+      )
       .then((value) => {
         if (value.status == 200) {
           dispatch({

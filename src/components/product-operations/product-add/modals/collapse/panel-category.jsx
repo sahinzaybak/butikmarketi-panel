@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { Radio, Space, } from "antd";
 
 //actions
-import { fetchSubCategory, fetchCategoryTitleList, fetchFilterOptions } from "../../../store/actions/add-product";
+import { fetchSubCategory, fetchCategoryTitleList, fetchFilterOptions } from "../../../../../store/actions/add-product";
 
 const PanelCategory = ({ mainCategoryList, subCategoryList, categoryTitleList }) => {
   const dispatch = useDispatch();
@@ -26,8 +26,9 @@ const PanelCategory = ({ mainCategoryList, subCategoryList, categoryTitleList })
   function selectedCategory(e) { // Kategori Seçimi (T-shirt, Pantolon, Etek ..vs)
     const catValue = e.target.defaultValue;
     setCategoryValue(catValue)
-    dispatch({ type: "FETCH_SELECTED_CATEGORY_SLUG", payload: e.target.slug }); //erkek-gomlek-x-12s
+    dispatch({ type: "SELECTED_CATEGORY_INFO", payload: { slug: e.target.slug, filterTitle: catValue } }); //erkek-gomlek-x-12s
     dispatch(fetchFilterOptions(catValue)); //kategorileri getir.
+    dispatch({ type: "OPEN_ADD_PRODUCT_FORM_TAB", payload: true }) //Kategori seçince Form tabı açılsın
   };
 
   return (

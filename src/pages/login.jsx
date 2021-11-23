@@ -14,8 +14,7 @@ const Login = () => {
   const dispatch = useDispatch();
   const history = useHistory();
 
-  // Form Submit
-  const onFinish = (form_values) => {
+  const onFinish = (form_values) => { // Form Submit
     dispatch(login(form_values));
   };
   
@@ -39,14 +38,13 @@ const Login = () => {
       })
       if (isLogin) {
         setTimeout(() => {
-          history.push("/panel")
+          history.push("/product-operations")
           localStorage.setItem("butik_token", authInfo.data.token)
           localStorage.setItem("butik_info", JSON.stringify(authInfo.data.info[0]))
         }, 2500);
       }
     }
   }, [authInfo]);
-
 
   return (
     <div className="login">

@@ -7,7 +7,6 @@ import orders from '../assets/images/orders.png'
 import analystic from '../assets/images/analystic.png'
 import arrowRight from '../assets/images/arrow-right.png'
 
-
 let butikInfo
 const Header = () => {
   const dispatch = useDispatch()
@@ -36,7 +35,7 @@ const Header = () => {
                   <img src={addProduct} alt="" />
                 </div>
                 <div className="header-menu__text">
-                  <h4>Ürün Ekle</h4>
+                  <h4>Ürün İşlemleri</h4>
                   <img src={arrowRight} alt="" />
                 </div>
               </div>
