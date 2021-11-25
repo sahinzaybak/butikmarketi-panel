@@ -1,6 +1,15 @@
+import React, { useState } from "react";
 import '../assets/scss/analysis.scss'
-import AnalysisComp from '../components/analysis'
+import { Modal } from "antd";
+import AnalysisTop from '../components/analysis/analysis-top'
+import AnalysisCenter from '../components/analysis/analysis-center'
+import TableAnalysis from '../components/analysis/table-analysis'
+import AnalysisTableModal from '../components/analysis/modal-analysis-table'
+
 const Analysis = () => {
+  const [preview, setPreview] = useState(false);
+  const [color, setColor] = useState("")
+  const [title, setTitle] = useState("")
   return (
     <div className="wrapper analysis-page">
       <div className="wrapper-header">
@@ -8,8 +17,33 @@ const Analysis = () => {
       </div>
       <div className="wrapper-main">
         <div className="wrapper-main__item">
-         <AnalysisComp />
+          <AnalysisTop onClickOpenModal={(color, title) => {
+            setPreview(true)
+            setColor(color)
+            setTitle(title)
+          }} />
         </div>
+        <div className="wrapper-main__item mt-4">
+          <AnalysisCenter onClickOpenModal={(color, title) => {
+            setPreview(true)
+            setColor(color)
+            setTitle(title)
+          }} />
+        </div>
+        <div className="wrapper-main__item mt-4">
+          <TableAnalysis />
+        </div>
+        <Modal
+          visible={preview}
+          footer={null}
+          destroyOnClose={true}
+          width={780}
+          centered
+          onCancel={() => { setPreview(false) }}>
+          <div className="add-product__modal">
+            <AnalysisTableModal color={color} title={title} />
+          </div>
+        </Modal>
       </div>
     </div>
   );

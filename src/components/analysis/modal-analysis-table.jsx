@@ -1,0 +1,82 @@
+import React, { useState } from "react";
+import { Table } from 'antd';
+
+const AnalysisTableModal = ({ color, title }) => {
+  const columns = [
+    {
+      title: 'Sıra',
+      dataIndex: 'order',
+      key: 'order',
+    },
+    {
+      title: 'Ürün Adı',
+      dataIndex: 'name',
+      key: 'name',
+    },
+    {
+      title: 'Fiyat',
+      dataIndex: 'age',
+      key: 'age',
+    },
+    {
+      title: 'Kategori',
+      dataIndex: 'address',
+      key: 'address',
+    },
+    {
+      title: 'Görüntülenme',
+      key: 'tags',
+      dataIndex: 'tags',
+    },
+  ];
+
+  const data = [
+    {
+      key: '1',
+      order: 1,
+      name: 'Erkek Oduncu Gömlek',
+      age: "129.90 ₺",
+      address: 'Gömlek',
+      tags: 121,
+    },
+    {
+      key: '2',
+      order: 2,
+      name: 'Erkek Oduncu Gömlek',
+      age: "129.90 ₺",
+      address: 'Gömlek',
+      tags: 121,
+    },
+    {
+      key: '2',
+      order: 3,
+      name: 'Erkek Oduncu Gömlek',
+      age: "129.90 ₺",
+      address: 'Gömlek',
+      tags: 121,
+    },
+    {
+      key: '2',
+      order: 4,
+      name: 'Erkek Oduncu Gömlek',
+      age: "129.90 ₺",
+      address: 'Gömlek',
+      tags: 121,
+    },
+    {
+      key: '2',
+      order: 5,
+      name: 'Erkek Oduncu Gömlek',
+      age: "129.90 ₺",
+      address: 'Gömlek',
+      tags: 121,
+    },
+  ];
+  return (
+    <div className="anaysis-table">
+      <h4 className="add-product__modal-title">{title}</h4>
+      <Table className={color} columns={columns} dataSource={data} pagination={false} />
+    </div>
+  );
+}
+export default AnalysisTableModal

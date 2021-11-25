@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import '../assets/scss/layout/header.scss'
-import addProduct from '../assets/images/add-product.png'
 import products from '../assets/images/products.png'
 import orders from '../assets/images/orders.png'
 import analystic from '../assets/images/analystic.png'

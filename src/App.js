@@ -17,8 +17,8 @@ function App() {
       {/* {loginUserInfo == null && history.push("/")} */}
       <Route exact path='/' component={loginPage}></Route>
       <Route path="/" render={(props) => (props.location.pathname !== "/") && <Header /> }></Route> 
-      <Route path='/product-operations' component={productOperations}></Route>
-      <Route path='/analysis' component={analysis}></Route>
+      <Route path='/urun-islemleri' component={productOperations}></Route>
+      <Route path='/genel-analiz' component={analysis}></Route>
     </div>
   );
 }

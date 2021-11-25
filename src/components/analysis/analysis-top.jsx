@@ -24,7 +24,7 @@ export const data = {
   labels,
   datasets: [
     {
-      label: 'Mağaza Görüntülenme',
+      label: 'Günlük Mağaza Görüntülenme',
       data: labels.map(() => faker.datatype.number({ min: 0, max: 120 })),
       backgroundColor: '#a252db8c',
     },
@@ -34,22 +34,22 @@ export const data2 = {
   labels,
   datasets: [
     {
-      label: 'Sipariş Sayısı',
+      label: 'Günlük Sipariş Sayısı',
       data: labels.map(() => faker.datatype.number({ min: 0, max: 10 })),
       backgroundColor: '#7dc73a94',
     },
   ],
 };
-const AnalysisComp = () => {
+const AnalysisTop = ({ onClickOpenModal }) => {
   return (
     <div className="analysis">
       <div className="analysis-wrp">
         <div className="row">
           <div className="col-md-3 analysis-box">
             <div className="analysis-item">
-              <h5>TOPLAM MAĞAZA GÖRÜNTÜLENME</h5>
+              <h5>TOPLAM MAĞAZA ZİYARET</h5>
               <p>172</p>
-              <span>kez görüntülendi.</span>
+              <span>kez profiliniz görüntülendi.</span>
             </div>
           </div>
           <div className="col-md-3 analysis-box">
@@ -58,7 +58,6 @@ const AnalysisComp = () => {
               <p>16</p>
               <span>kez sayfanız görüntülendi.</span>
             </div>
-            
           </div>
           <div className="col-md-3 analysis-box">
             <div className="analysis-item">
@@ -79,23 +78,23 @@ const AnalysisComp = () => {
           <div className="row">
             <div className="col-md-6">
               <div className="analysis-chart__item">
-                <p className="mb-3">7 Günlük Mağaza Profil Sayfanızın Görüntülenme İstatistikleri</p>
+                <p className="analysis-chart__title mb-3">7 Günlük Mağaza Profil Sayfanızın Görüntülenme İstatistikleri</p>
                 <Bar options={options} data={data} />
+                <p className="analysis-chart__more purple" onClick={() => { onClickOpenModal("defaultColor", "Mağaza Profil Sayfası Görüntülenme Detaylı Bilgi") }}>Daha detaylı incele</p>
               </div>
-
             </div>
             <div className="col-md-6">
               <div className="analysis-chart__item">
-                <p className="mb-3">7 Günlük Sipariş Sayısı İstatistikleri</p>
+                <p className="analysis-chart__title mb-3">7 Günlük Sipariş Sayısı İstatistikleri</p>
                 <Bar options={options} data={data2} />
+                <p className="analysis-chart__more green" onClick={() => { onClickOpenModal("green", "Günlük Sipariş Sayısı Detaylı Bilgi") }}>Daha detaylı incele</p>
               </div>
             </div>
           </div>
         </div>
-
       </div>
     </div>
   );
 };
 
-export default AnalysisComp;
+export default AnalysisTop;
