@@ -38,7 +38,7 @@ const Login = () => {
       })
       if (isLogin) {
         setTimeout(() => {
-          history.push("/product-operations")
+          history.push("/analysis")
           localStorage.setItem("butik_token", authInfo.data.token)
           localStorage.setItem("butik_info", JSON.stringify(authInfo.data.info[0]))
         }, 2500);

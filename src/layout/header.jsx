@@ -11,7 +11,7 @@ let butikInfo
 const Header = () => {
   const dispatch = useDispatch()
   butikInfo = useSelector(state => state.butik.butikInfo)
-  useEffect( () => {
+  useEffect(() => {
     if (JSON.parse(localStorage.getItem("butik_info")) != null) { //localStorge basket bilgilerini al ve basketList state'ni doldur.
       dispatch({ type: "BUTIK_INFO", payload: JSON.parse(localStorage.getItem("butik_info")) });
     }
@@ -26,28 +26,26 @@ const Header = () => {
               <div className="header-top__logo mb-2">
                 <img src={butikInfo.butik_image} alt="" />
               </div>
-
               <h2>{butikInfo.butik_name}</h2>
             </div>
             <div className="header-menu">
               <div className="header-menu__item">
                 <div className="header-menu__icon">
-                  <img src={addProduct} alt="" />
+                  <img src={analystic} alt="" />
                 </div>
                 <div className="header-menu__text">
-                  <h4>Ürün İşlemleri</h4>
+                  <h4>Genel Analiz</h4>
                   <img src={arrowRight} alt="" />
                 </div>
               </div>
               <div className="header-menu__item">
                 <div className="header-menu__icon">
-                  <img src={analystic} alt="" />
+                  <img src={products} alt="" />
                 </div>
                 <div className="header-menu__text">
-                  <h4>Analiz</h4>
+                  <h4>Ürün İşlemleri</h4>
                   <img src={arrowRight} alt="" />
                 </div>
-
               </div>
               <div className="header-menu__item">
                 <div className="header-menu__icon">
@@ -57,14 +55,13 @@ const Header = () => {
                   <h4>Siparişlerim</h4>
                   <img src={arrowRight} alt="" />
                 </div>
-
               </div>
               <div className="header-menu__item">
                 <div className="header-menu__icon">
                   <img src={products} alt="" />
                 </div>
                 <div className="header-menu__text">
-                  <h4>Ürünlerim</h4>
+                  <h4>Ayarlar</h4>
                   <img src={arrowRight} alt="" />
                 </div>
               </div>

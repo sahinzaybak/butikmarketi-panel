@@ -7,7 +7,7 @@ import ProductListContentLoader from '../content-loader/product-list-loader';
 import { fetchButikProducts } from '../../store/actions/butik'
 
 let butikProducts
-const ProductArea = ({ onClickOpenModal, onClickOpenModalUpdate }) => {
+const ProductArea = ({ onClickOpenModal, onClickOpenModalUpdate, onClickOpenModalAnalysis }) => {
   const dispatch = useDispatch()
   butikProducts = useSelector(state => state.butik.butikProducts)
   useEffect(() => {
@@ -27,12 +27,15 @@ const ProductArea = ({ onClickOpenModal, onClickOpenModalUpdate }) => {
             :
             <>
               {butikProducts.products.map((product, index) => (
-                <div className="product-item" key={index} onClick={() => onClickOpenModalUpdate(product)}>
-                  <div className="product-image mb-2">
-                    <img src={product.image} alt="" />
+                <div className="product-item" key={index}>
+                  <div className="product-item__info" onClick={() => onClickOpenModalUpdate(product)}>
+                    <div className="product-image mb-2">
+                      <img src={product.image} alt="" />
+                    </div>
+                    <h4 className="product-item__title">{product.title}</h4>
+                    <p className="product-item__price">{product.price} ₺</p>
                   </div>
-                  <h4 className="product-item__title">{product.title}</h4>
-                  <p className="product-item__price">{product.price} ₺</p>
+                  <p onClick={() => onClickOpenModalAnalysis(product.image,product.title)}>Analiz Et</p>
                 </div>
               ))}
             </>

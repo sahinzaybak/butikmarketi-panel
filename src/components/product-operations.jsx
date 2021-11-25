@@ -6,13 +6,17 @@ import { IsAddedProduct } from '../helpers/helpers'
 //Components
 import ProductArea from './product-operations/product-area'
 import ModalAdd from './product-operations/product-add/modals/modal-add'
-import ModalUpdate from './product-operations/product-update/modals/modal-update'
+import ModalUpdate from './product-operations/product-update/modal-update'
+import ModalAnalysis from './product-operations/product-analysis/modal-analysis'
 
 const ProductOperations = () => {
   const [preview, setPreview] = useState(false);
   const [previewModalUpdate, setPreviewModalUpdate] = useState(false);
+  const [previewModalAnalysis, setPreviewModalAnalysis] = useState(false);
   const [destroyForm, setDestroyForm] = useState(false);
   const [selectedProductInfo, setSelectedProductInfo] = useState()
+  const [selectedProductCoverImage, setSelectedProductCoverImage] = useState()
+  const [selectedProductTitle, setSelectedProductTitle] = useState()
 
   let isAddedProduct = IsAddedProduct() //yeni ürün eklendiğinde true yada false.
   useEffect(() => {
@@ -25,20 +29,37 @@ const ProductOperations = () => {
 
   return (
     <div className="add-product">
-      <ProductArea // ürün ekleme 
+      <ProductArea
         onClickOpenModal={() => { setPreview(true) }}
         onClickOpenModalUpdate={(selectedProduct) => {
           setPreviewModalUpdate(true)
           setSelectedProductInfo(selectedProduct)
-        }} />
-      <ModalAdd // ürün ekle modal
+        }}
+        onClickOpenModalAnalysis={(productCoverImage,productTitle) => { 
+          setPreviewModalAnalysis(true) 
+          setSelectedProductCoverImage(productCoverImage)
+          setSelectedProductTitle(productTitle)
+        }}
+      />
+
+      {/* ürün ekle modal */}
+      <ModalAdd
         destroyForm={destroyForm}
         preview={preview}
         onCancel={() => { setPreview(false) }} />
-      <ModalUpdate // ürün düzenle modal
+
+      {/*ürün düzenle modal*/}
+      <ModalUpdate
         preview={previewModalUpdate}
         selectedProductInfo={selectedProductInfo}
-        onCancel={() => {setPreviewModalUpdate(false)}} />
+        onCancel={() => { setPreviewModalUpdate(false) }} />
+
+      {/* ürün analiz modal */}
+      <ModalAnalysis
+        preview={previewModalAnalysis}
+        selectedProductCoverImage={selectedProductCoverImage}
+        selectedProductTitle={selectedProductTitle}
+        onCancel={() => { setPreviewModalAnalysis(false) }} />
     </div>
   );
 };

@@ -3,10 +3,10 @@ import { useSelector, useDispatch } from "react-redux";
 import { Modal } from "antd";
 
 //Actions
-import { fetchFilterOptions } from "../../../../store/actions/add-product";
+import { fetchFilterOptions } from "../../../store/actions/add-product";
 
 //Components
-import PanelFormUpdate from '../form-update'
+import PanelFormUpdate from './form-update'
 
 const ModalUpdate = ({ preview, onCancel, selectedProductInfo }) => {
   const dispatch = useDispatch();
