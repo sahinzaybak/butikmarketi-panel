@@ -1,19 +1,24 @@
 .add-product {
+  &__header {
+    border-bottom: 1px solid #f3f3f3;
+    h4 {
+      font-size: 25px;
+      color: #894ab3;
+    }
+  }
   &__box {
     position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
     width: 200px;
-    height: 54px;
+    height: 46px;
     background-color: white;
     border-radius: 12px;
     cursor: pointer;
     border: 2px dashed #e3e3e3;
     transition: all 0.3s;
     flex-shrink: 0;
-    margin-right: 24px;
-    margin-bottom: 20px;
     img {
       position: absolute;
       width: 100%;
@@ -167,16 +172,68 @@
     align-items: center;
     flex-wrap: wrap;
     &-item {
+      position: relative;
       width: 20%;
       padding: 0 10px 20px 10px;
       cursor: pointer;
+      border-radius: 6px;
+      padding-top: 7px;
+      padding-bottom: 17px;
+      margin-bottom: 12px;
+      border: 1px solid transparent;
+      transition: all 0.3s;
+      &:hover {
+        border-color: #9a63bf4d;
+        box-shadow: #9a63bf24 1px 4px 8px 1px;
+        .product-item__update,
+        .product-item__analysis {
+          opacity: 1;
+        }
+      }
+
       &__title {
-        font-size: 17px;
+        font-size: 15px;
         color: #282828;
       }
       &__price {
         font-size: 16px;
       }
+      &__update {
+        background-color: #94cd3812;
+        border: 1px solid #94cd38;
+        color: #94cd38;
+        border-radius: 0;
+        text-align: center;
+        padding: 6px;
+        font-size: 13px;
+        transition: all 0.3s;
+        opacity: 0.2;
+        border-radius: 50px;
+        font-weight: 600;
+      }
+      &__analysis {
+        background-color: #9a63bf14;
+        border: 1px solid #9a63bf80;
+        color: #9a63bf80;
+        border-radius: 0;
+        text-align: center;
+        padding: 6px;
+        font-size: 13px;
+        transition: all 0.3s;
+        border-radius: 50px;
+        opacity: 0.2;
+        font-weight: 600;
+      }
+      // &:after{
+      //   content:'';
+      //   position: absolute;
+      //   left:0;
+      //   top:0;
+      //   width: 10px;
+      //   height: 10px;
+      //   background-color: red;
+      //   border-radius: 50px;
+      // }
     }
     &-image {
       height: 270px;
@@ -190,8 +247,8 @@
         border-radius: 6px;
       }
       &:hover {
-        box-shadow: 10px 10px 20px -12px #d3d3d3;
-        border-color: #9a63bf;
+        // box-shadow: 10px 10px 20px -12px #d3d3d3;
+        // border-color: #9a63bf;
       }
     }
   }
@@ -200,8 +257,8 @@
     .analysis {
       &-image {
         height: 100%;
-    border: 1px solid #ededed;
-    border-radius: 6px;
+        border: 1px solid #ededed;
+        border-radius: 6px;
         img {
           width: 100%;
           border-radius: 6px;

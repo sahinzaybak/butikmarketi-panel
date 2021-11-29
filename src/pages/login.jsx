@@ -5,7 +5,7 @@ import '../assets/scss/login.scss'
 import logo from '../assets/images/logo-2.png'
 import { Form, Input, Button } from 'antd';
 import { store } from 'react-notifications-component';
-
+import { IsLogin } from '../helpers/helpers'
 //actions
 import { login } from "../store/actions/auth";
 
@@ -13,15 +13,15 @@ const Login = () => {
   const isInitialMount = useRef(true);
   const dispatch = useDispatch();
   const history = useHistory();
+  let isLogin = IsLogin(); //helpers
+  let authInfo = useSelector((state) => state.auth.authInfo);
 
-  const onFinish = (form_values) => { // Form Submit
+  // Form Submit
+  function onFinish(form_values) {
     dispatch(login(form_values));
   };
-  
+
   //Giriş yapıldı mı ?
-  let isLogin;
-  let authInfo = useSelector((state) => state.auth.authInfo);
-  if (authInfo != "") isLogin = authInfo.data.status == 200 ? true : false
   useEffect(() => {
     if (isInitialMount.current) isInitialMount.current = false; // ilk sayfa yüklendiğinde useEffect çalışmasın. Mount & Update ayrımı => useRef()
     else {

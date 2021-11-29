@@ -54,9 +54,9 @@ const AnalysisTop = ({ onClickOpenModal }) => {
           </div>
           <div className="col-md-3 analysis-box">
             <div className="analysis-item">
-              <h5>TOPLAM INSTAGRAM ZİYARET</h5>
-              <p>16</p>
-              <span>kez sayfanız görüntülendi.</span>
+              <h5>TOPLAM ÜRÜN GÖRÜNRÜLEME</h5>
+              <p>265</p>
+              <span>kez ürünleriniz görüntülendi.</span>
             </div>
           </div>
           <div className="col-md-3 analysis-box">

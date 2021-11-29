@@ -34,9 +34,9 @@ export const data2 = {
   labels,
   datasets: [
     {
-      label: 'Günlük Kazancınız (₺)',
+      label: 'Günlük Instagram Görüntülenme',
       data: labels.map(() => faker.datatype.number({ min: 0, max: 400 })),
-      backgroundColor: '#f3ae309c',
+      backgroundColor: '#c13c7ca8',
     },
   ],
 };
@@ -55,9 +55,9 @@ const AnalysisCenter= ({onClickOpenModal}) => {
           </div>
           <div className="col-md-4 analysis-box">
             <div className="analysis-item two">
-              <h5>TOPLAM ÜRÜN GÖRÜNTÜLENME</h5>
-              <p>432</p>
-              <span>kez ürünleriniz görünlendi.</span>
+              <h5>TOPLAM INSTAGRAM GÖRÜNTÜLENME</h5>
+              <p>92</p>
+              <span>kez sayfanız görünlendi.</span>
             </div>
           </div>
           <div className="col-md-4 analysis-box">
@@ -79,7 +79,7 @@ const AnalysisCenter= ({onClickOpenModal}) => {
             </div>
             <div className="col-md-6">
               <div className="analysis-chart__item">
-                <p className="analysis-chart__title  mb-3">7 Günlük Kazancınız</p>
+                <p className="analysis-chart__title  mb-3">7 Günlük Instagram Görüntülenme İstatistikleri</p>
                 <Bar options={options} data={data2} />
                 <p className="analysis-chart__more orange" onClick={() => { onClickOpenModal("orange", "Günlük Kazancınız Detaylı Bilgi") }}>Daha detaylı incele</p>
               </div>

@@ -13,7 +13,7 @@ const Analysis = () => {
   return (
     <div className="wrapper analysis-page">
       <div className="wrapper-header">
-        <h3>Analiz</h3>
+        <h3>Genel Analiz</h3>
       </div>
       <div className="wrapper-main">
         <div className="wrapper-main__item">

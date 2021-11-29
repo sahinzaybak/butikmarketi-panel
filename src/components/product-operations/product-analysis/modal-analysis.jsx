@@ -1,8 +1,4 @@
-import { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
 import { Modal } from "antd";
-
-//Components
 import Analysis from './analysis'
 
 const ModalAnalysis = ({ preview, onCancel, selectedProductCoverImage, selectedProductTitle }) => {

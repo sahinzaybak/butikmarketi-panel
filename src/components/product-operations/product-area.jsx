@@ -17,9 +17,13 @@ const ProductArea = ({ onClickOpenModal, onClickOpenModalUpdate, onClickOpenModa
   return (
     <div className="add-product">
       <div className="d-flex flex-wrap flex-column">
-        <div className="add-product__box d-flex" onClick={() => onClickOpenModal()}>
-          <PlusOutlined className="add-product__plus-icon" />
-          <h6 className="ml-2">Ürün Ekle</h6>
+        <div className="add-product__header d-flex align-items-center justify-content-between mb-4">
+          <h4>Ürünleriniz (20)</h4>
+          <div className="add-product__box d-flex mb-2" onClick={() => onClickOpenModal()}>
+            <PlusOutlined className="add-product__plus-icon" />
+            <h6 className="ml-2">Ürün Ekle</h6>
+          </div>
+
         </div>
 
         <div className="product">
@@ -35,7 +39,8 @@ const ProductArea = ({ onClickOpenModal, onClickOpenModalUpdate, onClickOpenModa
                     <h4 className="product-item__title">{product.title}</h4>
                     <p className="product-item__price">{product.price} ₺</p>
                   </div>
-                  <p onClick={() => onClickOpenModalAnalysis(product.image,product.title)}>Analiz Et</p>
+                  <p className="product-item__update mt-2 mb-2" onClick={() => onClickOpenModalUpdate(product)}>Düzenle</p>
+                  <p className="product-item__analysis" onClick={() => onClickOpenModalAnalysis(product.image, product.title)}>Analiz Et</p>
                 </div>
               ))}
             </>

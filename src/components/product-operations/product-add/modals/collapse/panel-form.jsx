@@ -108,7 +108,7 @@ const PanelForm = ({ optionsList }) => {
               comments: [],
               colors: selectedCheckColors
             }))
-            if (IsAddedProduct) { //yeni ürün eklendiğinde (helpers)
+            if (IsAddedProduct) { //yeni ürün eklendiğinde(true) (helpers)
               store.addNotification({
                 message: "Tebrikler, ürününüz başarıya yayınladı :)",
                 type: "success",
