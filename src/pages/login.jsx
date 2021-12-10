@@ -2,11 +2,14 @@ import React, { useEffect, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router";
 import '../assets/scss/login.scss'
-import logo from '../assets/images/logo-2.png'
 import { Form, Input, Button } from 'antd';
 import { store } from 'react-notifications-component';
+import logo from '../assets/images/logo-2.png'
+
+//Helpers
 import { IsLogin } from '../helpers/helpers'
-//actions
+
+//Actions
 import { login } from "../store/actions/auth";
 
 const Login = () => {
@@ -36,9 +39,9 @@ const Login = () => {
         animationOut: ["animate__animated", "animate__fadeOut"],
         dismiss: { duration: 2000, onScreen: false },
       })
-      if (isLogin) {
+      if (isLogin) { //true ise
         setTimeout(() => {
-          history.push("/analysis")
+          history.push("/genel-analiz")
           localStorage.setItem("butik_token", authInfo.data.token)
           localStorage.setItem("butik_info", JSON.stringify(authInfo.data.info[0]))
         }, 2500);

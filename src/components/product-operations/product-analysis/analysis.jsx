@@ -18,8 +18,8 @@ export const options = {
     }
   },
 };
-const labels = ['18/08', '19/08', '20/08', '21/08', '22/08', 'Dün', 'Bugün'];
 
+const labels = ['Cuma', 'Cumartesi', 'Pazar', 'Pazartesi', 'Salı', 'Dün', 'Bugün'];
 export const data = {
   labels,
   datasets: [
@@ -33,36 +33,46 @@ export const data = {
 
 const Analysis = ({ selectedProductCoverImage, selectedProductTitle }) => {
   return (
-    <div className="add-product__analysis">
+    <div className="product-operation__analysis">
       <div className="analysis">
         <div className="row">
-          <div className="col-md-4">
+          <div className="col-md-3">
             <div className="analysis-image">
+              <img className="analysis-image__cover" src={selectedProductCoverImage} alt="" />
               <img src={selectedProductCoverImage} alt="" />
             </div>
           </div>
-          <div className="col-md-8">
+          <div className="col-md-9">
             <div className="analysis-wrp">
               <h4>{selectedProductTitle}</h4>
               <div className="d-flex">
                 <div className="analysis-item">
-                  <h5>GÖRÜNTÜLENME</h5>
+                  <h5>T. GÖRÜNTÜLENME</h5>
                   <p>62</p>
                   <span>kez görüntülendi.</span>
                 </div>
                 <div className="analysis-item">
-                  <h5>FAVORİ</h5>
-                  <p>7</p>
-                  <span>kişi favorisine ekledi.</span>
+                  <h5>TOPLAM INSTAGRAM</h5>
+                  <p>80</p>
+                  <span>kişi ürünü inceledi.</span>
                 </div>
                 <div className="analysis-item">
-                  <h5>SİPARİŞ</h5>
+                  <h5>TOPLAM SİPARİŞ</h5>
                   <p>0</p>
                   <span>kişi sipariş verdi.</span>
                 </div>
+                <div className="analysis-item">
+                  <h5>TOPLAM FAVORİ</h5>
+                  <p>7</p>
+                  <span>kişi favorilere ekledi.</span>
+                </div>
+
               </div>
+              <p className="mt-1 analysis-info">*Yukarıdaki istatistiklere tıklayarak istatistik detaylarını görebilirsiniz.</p>
               <div className="analysis-chart mt-4">
+                <p class="analysis-chart__title mb-3">Ürününüzün 7 Günlük Görüntülenme İstatistikleri</p>
                 <Bar options={options} data={data} />
+                <p class="analysis-chart__more purple">Daha detaylı incele</p>
               </div>
             </div>
           </div>

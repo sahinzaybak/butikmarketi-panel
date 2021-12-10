@@ -52,8 +52,8 @@ const ModalAdd = ({ preview, onCancel, destroyForm }) => {
       width={780}
       centered
       onCancel={() => { onCancel() }}>
-      <div className="add-product__modal">
-        <h4 className="add-product__modal-title">Ürün Ekle</h4>
+      <div className="product-operation__modal">
+        <h4 className="product-operation__modal-title">Ürün Ekle</h4>
         <Collapse accordion activeKey={activeCollapseKey} onChange={(key) => setActiveCollapseKey(key)}>
           <Panel header="Ürününüz için bir kategori belirleyin" key="1">
             <PanelCategory

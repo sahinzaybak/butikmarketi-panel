@@ -160,12 +160,21 @@ label {
   margin-bottom: 16px;
 }
 
-input {
+.ant-input {
   height: 42px;
+  border-radius: 4px !important;
+  color: #363636 !important;
+  &:hover,
+  &:focus {
+    border-color: #a573c5;
+    box-shadow: none;
+  }
 }
 
-textarea{
+textarea {
   height: 92px !important;
+  border-radius: 4px !important;
+  color: #363636 !important;
 }
 
 .wrapper {
@@ -193,196 +202,26 @@ textarea{
   }
 }
 
-.inputfile {
-  /* visibility: hidden etc. wont work */
-  width: 0.1px;
-  height: 0.1px;
-  opacity: 0;
-  overflow: hidden;
-  position: absolute;
-  z-index: -1;
-}
-.inputfile:focus + label {
-  /* keyboard navigation */
-  outline: 1px dotted #000;
-  outline: -webkit-focus-ring-color auto 5px;
-}
-.inputfile + label * {
-  pointer-events: none;
-}
-
-.ant-upload.ant-upload-select,
-.ant-upload-list-picture-card-container {
-  height: 215px;
-  border-radius: 12px;
-  // width: 170px;
-  width: 15.9%;
-  &:hover {
-    border-color: #9a63bf;
+.ant-picker {
+  &:hover,
+  &:focus,
+  &-focused {
+    border-color: #a573c5;
+    box-shadow: none;
   }
-}
-.ant-upload-list-picture-card .ant-upload-list-item {
-  padding: 0 !important;
-  border-radius: 12px !important;
-}
-
-.ant-upload-list-picture-card .ant-upload-list-item-thumbnail {
-  opacity: 1 !important;
-  img {
-    object-fit: cover !important;
-    border-radius: 12px;
+  &-active-bar {
+    background: #8cd140 !important;
   }
-}
-
-.ant-radio-input:focus + .ant-radio-inner,
-.ant-checkbox-input:focus + .ant-checkbox-inner {
-  box-shadow: none;
-}
-.ant-radio-checked::after,
-.ant-checkbox-checked::after {
-  border: none;
-}
-
-.ant-checkbox-wrapper:hover .ant-checkbox-inner,
-.ant-checkbox:hover .ant-checkbox-inner,
-.ant-checkbox-input:focus + .ant-checkbox-inner {
-  border-color: #7c2c89;
-}
-.ant-radio-inner::after {
-  background-color: #9c27b0;
-}
-.ant-radio-checked .ant-radio-inner {
-  border-color: #7c2c89 !important;
-}
-
-.ant-checkbox-checked .ant-checkbox-inner {
-  border-color: #7c2c89 !important;
-  background-color: #7c2c89;
-}
-
-.ant-collapse > .ant-collapse-item > .ant-collapse-header {
-  font-size: 16px;
-  font-weight: 800;
-  color: #9c5da7;
-  background-color: #9c5da70d;
-}
-
-.ant-collapse {
-  border: 1px solid #9c5da733;
-  border-radius: 12px;
-}
-
-.ant-collapse-content {
-  border-top: 1px solid #e7dbea;
-}
-
-.ant-collapse > .ant-collapse-item {
-  border-bottom: 1px solid #e7dbea;
-}
-
-.ant-collapse > .ant-collapse-item:last-child {
-  border-bottom: 0;
-}
-
-.ant-collapse > .ant-collapse-item > .ant-collapse-header .ant-collapse-arrow {
-  color: #9d27b0;
-  position: relative;
-  top: -2px;
 }
 
 .ant-modal-content {
   border-radius: 12px;
 }
 
-
-.ant-table{
-  border: 1px solid #7c53973b;
+.analysis-table__filter {
+  background-color: #f9f9f8;
+  padding: 25px;
   border-radius: 6px;
+  margin-bottom: 20px;
+  border: 1px solid #ebebeb;
 }
-
-.green .ant-table{
-  border: 1px solid #8db26f52;
-  border-radius: 6px;
-}
-
-.light-green .ant-table{
-  border: 1px solid #8db26f52;
-  border-radius: 6px;
-}
-
-.orange .ant-table{
-  border: 1px solid #fad19d;
-  border-radius: 6px;
-}
-
-.ant-table-thead > tr > th{
-  background: #d1bbe74f;
-  color: #7c5397;
-  font-weight: 600;
-  border-bottom: 1px solid #e0d8e7;
-  padding: 11px 15px;
-  text-align: center;
-}
-
-.green .ant-table-thead > tr > th{
-  border-bottom: 1px solid #dae7d1;
-}
-
-.light-green .ant-table-thead > tr > th{
-  border-bottom: 1px solid #dae7d1;
-}
-
-.orange .ant-table-thead > tr > th{
-  border-bottom: 1px solid #f9d19d;
-}
-
-.ant-table-tbody > tr > td{
-  padding: 12px 16px;
-  border-bottom: 1px solid #f1edf5;
-  color: #7e5699;
-  text-align: center;
-}
-
-.green .ant-table-tbody > tr > td{
-  border-bottom: 1px solid #fad19d4d;
-  color: #88967d;
-
-}
-
-.light-green .ant-table-tbody > tr > td{
-  border-bottom: 1px solid #edf3eb;
-  color: #87ad69;
-}
-
-.orange .ant-table-tbody > tr > td{
-  border-bottom: 1px solid #c9af8c40;
-  color: #dda449;
-}
-
-.ant-table-tbody > tr{
-  &:nth-child(2n){
-    background-color: #f7f7f7;
-  }
-}
-
-
-
-.green .ant-table-thead > tr > th{
-  background: #76c73230;
-  color: #7ea75e;
-  font-weight: 600;
-}
-
-
-.light-green .ant-table-thead > tr > th{
-  background: #64a32f30;
-  color: #87ad69;
-  font-weight: 600;
-}
-
-.orange .ant-table-thead > tr > th{
-  background: #f0bd5c73;
-  color: #dda449;
-  font-weight: 600;
-}
-

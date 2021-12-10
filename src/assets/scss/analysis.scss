@@ -1,34 +1,34 @@
 .analysis-page {
   .analysis {
     &-item {
-      background-color: red;
       padding: 18px 20px;
       height: 150px;
       border-radius: 6px;
       text-align: center;
-      p {
+      &__title {
+        font-size: 14px;
+        font-weight: 600;
+      }
+      &__count {
         font-size: 60px;
         font-weight: 800;
       }
-      span {
+      &__desc {
         position: relative;
         top: -22px;
         font-size: 12px;
       }
-      h5 {
-        font-size: 14px;
-        font-weight: 600;
-      }
     }
+    
     &-box {
       &:nth-child(1) {
         .analysis-item {
           background-color: #86629f14;
           color: #7c5397;
-          h5 {
+          &__title {
             color: #7c5397;
           }
-          &.two{
+          &.second {
             background-color: #99cd5f33;
             color: #93c16f;
             h5 {
@@ -41,10 +41,10 @@
         .analysis-item {
           background-color: #d395b240;
           color: #c8548d;
-          h5 {
+          &__title {
             color: #c8548d;
           }
-          &.two{
+          &.second {
             background-color: #f4e4eb;
             color: #bf5288;
             h5 {
@@ -57,10 +57,10 @@
         .analysis-item {
           background-color: #ff852e2b;
           color: #f0a85c;
-          h5 {
+          &__title {
             color: #f0a85c;
           }
-          &.two {
+          &.second {
             background-color: #f3c26938;
             color: #f0a85c;
             border: 2px solid #efa85c36;
@@ -80,68 +80,22 @@
         }
       }
     }
-    &-chart {
-      &__item {
-        padding: 0 15px;
-      }
-      &__title {
-        border-bottom: 1px solid #f5f5f5;
-        color: #484848;
-        padding-bottom: 4px;
-        font-weight: 600;
-        font-size: 16px;
-        text-align: center;
-      }
-      &__more{
-        width: max-content;
-        color: white;
-        padding: 5px 36px;
-        border-radius: 25px;
-        font-size: 15px;
-        margin: 20px auto;
-        transition: all .3s;
-        cursor: pointer;
-        &.purple{
-          background-color: #cda1ec;
-          &:hover{
-            background-color: #b58ad3;
-          }
-        }
-        &.green{
-          background-color: #a9dd7f;
-          &:hover{
-            background-color: #94c969;
-          }
-        }
-        &.light-green{
-          background-color: #b1d38d;
-          &:hover{
-            background-color: #a4cf77;
-          }
-        }
-        &.orange{
-          background-color: #df6fa2;
-          &:hover{
-            background-color: #d56296;
-          }
-        }
-      }
-    }
-    &-table{
-      .table{
-        &-header{
+
+    &-table {
+      .table {
+        &-header {
           display: flex;
           justify-content: space-between;
           background-color: #f5f5f5;
           padding: 11px 20px;
         }
-        &-item{
-          img{
+        &-item {
+          img {
             width: 40px;
             height: 40px;
             border-radius: 100px;
           }
-          &__title{
+          &__title {
             font-size: 14px;
           }
         }

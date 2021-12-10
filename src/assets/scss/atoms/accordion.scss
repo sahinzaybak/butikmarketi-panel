@@ -1,0 +1,24 @@
+.ant-collapse {
+	border: 1px solid #9c5da733;
+	border-radius: 12px;
+	&-content {
+	  border-top: 1px solid #e7dbea;
+	}
+	&-header {
+	  font-size: 16px;
+	  font-weight: 800;
+	  color: #9c5da7 !important;
+	  background-color: #9c5da70d;
+	}
+	&-item {
+	  border-bottom: 1px solid #e7dbea;
+	  &:last-child {
+		border-bottom: 0;
+	  }
+	}
+	&-arrow {
+	  color: #9d27b0;
+	  position: relative;
+	  top: -2px;
+	}
+  }

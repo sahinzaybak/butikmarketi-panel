@@ -134,7 +134,7 @@ const PanelForm = ({ optionsList }) => {
   };
 
   return (
-    <div className="add-product__prop">
+    <div className="product-operation__prop">
       <Form onFinish={onFinishForm} autoComplete="off">
         <div className="row">
           <div className="col-md-4 p-0">
@@ -142,8 +142,8 @@ const PanelForm = ({ optionsList }) => {
               {
                 ({ imageList, onImageUpload }) => (
                   <>
-                    <div className="add-product__prop-wrp">
-                      <div className="add-product__image" onClick={onImageUpload}>
+                    <div className="product-operation__prop-wrp">
+                      <div className="product-operation__image" onClick={onImageUpload}>
                         <div className="d-flex align-items-center justify-content-center h-100">
                           <PlusOutlined />
                           <h6 className="ml-2">Ürün Resimleri Ekle</h6>
@@ -154,10 +154,9 @@ const PanelForm = ({ optionsList }) => {
                           <div className="cover mb-2 mt-2">
                             {imageList != "" && coverImage == "" && <img src={imageList[0].dataURL} alt="" />}
                             {coverImage != "" && <img src={coverImage.image_slider} alt="" />}
-
                           </div>
                           {!isAllUploadImage &&
-                            <div className="add-product__loading">
+                            <div className="product-operation__loading">
                               <Spin indicator={<LoadingOutlined className="spin" style={{ fontSize: 40 }} spin />} />
                             </div>
                           }
@@ -180,24 +179,24 @@ const PanelForm = ({ optionsList }) => {
           <div className="col-md-8 pl-5">
             <div className="row">
               <div className="col-md-8">
-                <Form.Item name="productName" rules={[{ required: true, message: 'Please input your username!' }]}>
+                <Form.Item name="productName" rules={[{ required: true, message: 'Ürün ismini giriniz.' }]}>
                   <Input placeholder="Ürün İsmi" />
                 </Form.Item>
               </div>
               <div className="col-md-4">
-                <Form.Item name="price" rules={[{ required: true, message: 'Please input your password!' }]}>
+                <Form.Item name="price" rules={[{ required: true, message: 'Ürün fiyatı giriniz.' }]}>
                   <Input placeholder="Ürün Fiyatı (₺)" />
                 </Form.Item>
               </div>
             </div>
-            <Form.Item name="desc" rules={[{ required: true, message: 'Please input your password!' }]}>
+            <Form.Item name="desc" rules={[{ required: true, message: 'Ürün açıklaması giriniz.' }]}>
               <Input.TextArea placeholder="Ürün Açıklaması" />
             </Form.Item>
-            <Form.Item name="link" rules={[{ required: true, message: 'Please input your password!' }]}>
+            <Form.Item name="link" rules={[{ required: true, message: 'Ürün instagram linkini giriniz.' }]}>
               <Input placeholder="Ürün İnstagram Linki" />
             </Form.Item>
 
-            <div className="add-product__prop-filters mt-4 pt-2">
+            <div className="product-operation__prop-filters mt-4 pt-2">
               <div className="row">
                 {optionsList != "" && optionsList.filter.map((option, index) => (
                   <>
@@ -229,7 +228,7 @@ const PanelForm = ({ optionsList }) => {
             </div>
           </div>
         </div>
-        <Button type="primary" htmlType="submit">Gönder</Button>
+        <Button className="button" htmlType="submit">Ürünü Ekle</Button>
       </Form>
     </div>
   );

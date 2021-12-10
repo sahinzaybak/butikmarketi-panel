@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Radio, Space, } from "antd";
 
@@ -32,10 +32,10 @@ const PanelCategory = ({ mainCategoryList, subCategoryList, categoryTitleList })
   };
 
   return (
-    <div className="add-product__category">
+    <div className="product-operation__category">
       <div className="row">
         <div className="col-md-4">
-          <div className="add-product__modal-item">
+          <div className="product-operation__modal-item">
             <h6>Ana Kategori Seçin</h6>
             <Radio.Group onChange={selectedMainCategory} value={mainCategoryValue}>
               <Space direction="vertical">
@@ -53,7 +53,7 @@ const PanelCategory = ({ mainCategoryList, subCategoryList, categoryTitleList })
           </div>
         </div>
         <div className="col-md-4">
-          <div className="add-product__modal-item">
+          <div className="product-operation__modal-item">
             <h6>Alt Kategori Seçin</h6>
             <Radio.Group onChange={selectedSubCategory} value={subCategoryValue}>
               <Space direction="vertical">
@@ -65,7 +65,7 @@ const PanelCategory = ({ mainCategoryList, subCategoryList, categoryTitleList })
           </div>
         </div>
         <div className="col-md-4">
-          <div className="add-product__modal-item last">
+          <div className="product-operation__modal-item last">
             <h6>Kategori Seçin</h6>
             <Radio.Group onChange={selectedCategory} defaultValue={categoryValue}>
               <Space direction="vertical">

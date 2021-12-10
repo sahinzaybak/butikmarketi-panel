@@ -1,11 +1,10 @@
 .order {
   .wrapper-main {
     background-color: #f5f6fa;
-  }
-
-  .wrapper-main__item {
-    padding: 0;
-    background-color: transparent;
+    &__item {
+      padding: 0;
+      background-color: transparent;
+    }
   }
   &-list {
     display: table;
@@ -13,7 +12,6 @@
     color: #8094ae;
     border-collapse: separate;
     border-spacing: 0 10px;
-
     &__wrp {
       display: table-row;
       transition: all 0.3s;
@@ -48,12 +46,10 @@
         color: #9d72ff;
         font-weight: 600;
       }
-
       &:nth-child(8) {
         font-weight: 800;
         color: #364a63;
       }
-
       &.status {
         span {
           position: relative;
@@ -102,7 +98,6 @@
         font-size: 13px;
         font-weight: 700;
         color: #9e6bbf;
-        
       }
       p {
         color: #7387a1;
@@ -119,8 +114,7 @@
         padding: 5px 7px;
         margin: 0 6px 16px;
         border: 1px solid #ebebeb;
-        span{
-      
+        span {
         }
       }
     }
@@ -129,31 +123,29 @@
         .order-detail__item {
           margin-left: 0;
         }
-
       }
       &:last-child {
         .order-detail__item {
           margin-right: 0;
-          p{
+          p {
             font-weight: 800;
             color: #5c5c5c;
           }
         }
- 
       }
     }
   }
-  &-actions{
+  &-actions {
     padding: 17px;
     border-radius: 6px;
-    p{
+    p {
       margin-bottom: 10px;
       color: #7387a1;
     }
-    .ant-input{
+    .ant-input {
       border-color: #ebebeb;
     }
-    button{
+    button {
       right: 0;
       height: 42px;
       width: 90px;
@@ -164,11 +156,10 @@
       text-shadow: none;
       box-shadow: none;
       font-weight: 700;
-  
     }
   }
 }
 
-.order-title{
+.order-title {
   font-size: 20px;
 }

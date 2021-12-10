@@ -26,8 +26,8 @@ const ModalUpdate = ({ preview, onCancel, selectedProductInfo }) => {
       width={780}
       centered
       onCancel={() => { onCancel() }}>
-      <div className="add-product__modal">
-        <h4 className="add-product__modal-title">Ürün Bilgileri Düzenle</h4>
+      <div className="product-operation__modal">
+        <h4 className="product-operation__modal-title">Ürün Bilgileri Düzenle</h4>
         <PanelFormUpdate
           optionsList={optionsList}
           selectedProductInfo={selectedProductInfo} />

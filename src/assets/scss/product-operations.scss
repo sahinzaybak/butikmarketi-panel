@@ -1,4 +1,4 @@
-.add-product {
+.product-operation {
   &__header {
     border-bottom: 1px solid #f3f3f3;
     h4 {
@@ -27,7 +27,7 @@
     }
     &:hover {
       border-color: #a974cd;
-      .add-product__top {
+      .product-operation__top {
         opacity: 1;
       }
     }
@@ -86,7 +86,7 @@
           display: none;
         }
         .ant-radio-group {
-          height: 190px;
+          height: 160px;
           overflow-x: scroll;
           padding-right: 26px;
         }
@@ -117,7 +117,7 @@
         width: max-content;
       }
       .ant-checkbox-group {
-        height: 190px;
+        height: 160px;
         overflow-x: scroll;
         padding-right: 10px;
       }
@@ -165,7 +165,121 @@
       color: #4e4e4e;
     }
   }
+  &__analysis {
+    .analysis {
+      &-image {
+        position: relative;
+        height: 100%;
+        border: 1px solid #ededed;
+        border-radius: 6px;
+        img {
+          width: 100%;
+          border-radius: 6px;
+          height: 100%;
+          object-fit: contain;
+        }
+        &__cover {
+          position: absolute;
+          object-fit: cover !important;
+          object-position: center;
+          opacity: 0.1;
+          filter: blur(5px);
+        }
+      }
+      h4 {
+        margin-bottom: 12px;
+        border-bottom: 1px solid #ededed;
+        color: #363636;
+        padding-bottom: 5px;
+        font-size: 19px;
+        font-weight: 600;
+      }
+      &-item {
+        width: 150px;
+        height: 135px;
+        background-color: white;
+        margin: 0px 9px 0px 0px;
+        border-radius: 10px;
+        text-align: center;
+        padding: 22px 15px;
+        background-color: #86629f14;
+        cursor: pointer;
+        transition: all 0.3s;
+        border: 1px solid #f0e5f9;
+        h5 {
+          font-size: 12px;
+          color: #7c5397;
+          font-weight: 500;
+          font-weight: 600;
+        }
+        p {
+          font-size: 50px;
+          font-weight: 800;
+          color: #86619f;
+        }
+        span {
+          color: #7c5397;
+          font-size: 11px;
+          position: relative;
+          top: -18px;
+          color: #86619f;
+        }
+        &:hover {
+          background-color: #962ddf14;
+        }
+        &:nth-child(4) {
+          background-color: #f1276f1a;
+          border: 1px solid #f1dde5;
+          margin-right: 0;
+          h5,
+          p,
+          span {
+            color: #f13a7c;
+          }
+          &:hover {
+            background-color: #f1276f26;
+          }
+        }
+        &:nth-child(3) {
+          background-color: #4c930c17;
+          border: 1px solid #d9f5c0;
+          h5,
+          p,
+          span {
+            color: #7dc73a;
+          }
+          &:hover {
+            background-color: #4c930c21;
+          }
+        }
+        &:nth-child(2) {
+          background-color: #f9f0f4;
+          border: 1px solid #cb488914;
 
+          h5,
+          p,
+          span {
+            color: #cb4889;
+          }
+          &:hover {
+            background-color: #fbe9f1;
+          }
+        }
+      }
+      &-info {
+        color: #b1afb3;
+        font-size: 12px;
+      }
+      .analysis-chart {
+        padding: 20px;
+      }
+      .analysis-chart__title {
+        color: #646262;
+      }
+    }
+  }
+
+  //Ürün listeleme
   .product {
     display: flex;
     margin: 0 -10px 0 -10px;
@@ -190,7 +304,6 @@
           opacity: 1;
         }
       }
-
       &__title {
         font-size: 15px;
         color: #282828;
@@ -207,9 +320,13 @@
         padding: 6px;
         font-size: 13px;
         transition: all 0.3s;
-        opacity: 0.2;
+        opacity: 0.3;
         border-radius: 50px;
         font-weight: 600;
+        transition: all 0.3s;
+        &:hover {
+          background-color: #94cd3836;
+        }
       }
       &__analysis {
         background-color: #9a63bf14;
@@ -221,19 +338,13 @@
         font-size: 13px;
         transition: all 0.3s;
         border-radius: 50px;
-        opacity: 0.2;
+        opacity: 0.3;
         font-weight: 600;
+        transition: all 0.3s;
+        &:hover {
+          background-color: #9a63bf30;
+        }
       }
-      // &:after{
-      //   content:'';
-      //   position: absolute;
-      //   left:0;
-      //   top:0;
-      //   width: 10px;
-      //   height: 10px;
-      //   background-color: red;
-      //   border-radius: 50px;
-      // }
     }
     &-image {
       height: 270px;
@@ -249,76 +360,6 @@
       &:hover {
         // box-shadow: 10px 10px 20px -12px #d3d3d3;
         // border-color: #9a63bf;
-      }
-    }
-  }
-
-  &__analysis {
-    .analysis {
-      &-image {
-        height: 100%;
-        border: 1px solid #ededed;
-        border-radius: 6px;
-        img {
-          width: 100%;
-          border-radius: 6px;
-          height: 100%;
-          object-fit: contain;
-        }
-      }
-      h4 {
-        margin-bottom: 12px;
-        border-bottom: 1px solid #ededed;
-        color: #363636;
-        padding-bottom: 5px;
-        font-size: 19px;
-        font-weight: 600;
-      }
-      &-item {
-        width: 150px;
-        height: 135px;
-        background-color: white;
-        margin: 0px 9px 0px 0px;
-        border-radius: 10px;
-        // box-shadow: 0px 4px 20px -11px #dddddd;
-        // border: 1px solid #f1f1f1;
-        text-align: center;
-        padding: 22px 15px;
-        background-color: #86629f14;
-        h5 {
-          font-size: 12px;
-          color: #7c5397;
-          font-weight: 500;
-          font-weight: 600;
-        }
-        p {
-          font-size: 50px;
-          font-weight: 800;
-          color: #86619f;
-        }
-        span {
-          color: #7c5397;
-          font-size: 11px;
-          position: relative;
-          top: -18px;
-          color: #86619f;
-        }
-        &:nth-child(2) {
-          background-color: #f1276f1a;
-          h5,
-          p,
-          span {
-            color: #f1266f;
-          }
-        }
-        &:nth-child(3) {
-          background-color: #4c930c17;
-          h5,
-          p,
-          span {
-            color: #7dc73a;
-          }
-        }
       }
     }
   }

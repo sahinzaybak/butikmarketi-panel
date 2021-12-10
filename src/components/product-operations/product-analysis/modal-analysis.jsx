@@ -7,11 +7,11 @@ const ModalAnalysis = ({ preview, onCancel, selectedProductCoverImage, selectedP
       visible={preview}
       footer={null}
       destroyOnClose={true}
-      width={780}
+      width={860}
       centered
       onCancel={() => { onCancel() }}>
-      <div className="add-product__modal">
-        <h4 className="add-product__modal-title">Ürün Analiz Bilgileri</h4>
+      <div className="product-operation__modal">
+        <h4 className="product-operation__modal-title">Ürün Analiz Bilgileri</h4>
         <Analysis selectedProductCoverImage={selectedProductCoverImage} selectedProductTitle={selectedProductTitle}/>
       </div>
     </Modal>

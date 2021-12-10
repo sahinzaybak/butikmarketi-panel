@@ -47,30 +47,30 @@ const AnalysisTop = ({ onClickOpenModal }) => {
         <div className="row">
           <div className="col-md-3 analysis-box">
             <div className="analysis-item">
-              <h5>TOPLAM MAĞAZA ZİYARET</h5>
-              <p>172</p>
-              <span>kez profiliniz görüntülendi.</span>
+              <h5 className="analysis-item__title">TOPLAM MAĞAZA ZİYARET</h5>
+              <p className="analysis-item__count">172</p>
+              <span className="analysis-item__desc">kez profiliniz görüntülendi.</span>
             </div>
           </div>
           <div className="col-md-3 analysis-box">
             <div className="analysis-item">
-              <h5>TOPLAM ÜRÜN GÖRÜNRÜLEME</h5>
-              <p>265</p>
-              <span>kez ürünleriniz görüntülendi.</span>
+              <h5 className="analysis-item__title">TOPLAM ÜRÜN GÖRÜNRÜLEME</h5>
+              <p className="analysis-item__count">265</p>
+              <span className="analysis-item__desc">kez ürünleriniz görüntülendi.</span>
             </div>
           </div>
           <div className="col-md-3 analysis-box">
             <div className="analysis-item">
-              <h5>TOPLAM ÜRÜN SAYINIZ</h5>
-              <p>12</p>
-              <span>adet ürününüz yayında.</span>
+              <h5 className="analysis-item__title">TOPLAM ÜRÜN SAYINIZ</h5>
+              <p className="analysis-item__count">12</p>
+              <span className="analysis-item__desc">adet ürününüz yayında.</span>
             </div>
           </div>
           <div className="col-md-3 analysis-box">
             <div className="analysis-item">
-              <h5>TOPLAM SİPARİŞ SAYINIZ</h5>
-              <p>18</p>
-              <span>kez sipariş aldınız.</span>
+              <h5 className="analysis-item__title">TOPLAM SİPARİŞ SAYINIZ</h5>
+              <p className="analysis-item__count">18</p>
+              <span className="analysis-item__desc">kez sipariş aldınız.</span>
             </div>
           </div>
         </div>

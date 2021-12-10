@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import "antd/dist/antd.css";
-import "../assets/scss/add-product.scss";
+import "../assets/scss/product-operations.scss";
+import "../assets/scss/atoms/accordion.scss";
+import "../assets/scss/atoms/radio-checkbox.scss";
 import { IsAddedProduct } from '../helpers/helpers'
 
 //Components
@@ -28,7 +30,7 @@ const ProductOperations = () => {
   }, [isAddedProduct]);
 
   return (
-    <div className="add-product">
+    <div className="product-operation">
       <ProductArea
         onClickOpenModal={() => { setPreview(true) }}
         onClickOpenModalUpdate={(selectedProduct) => {

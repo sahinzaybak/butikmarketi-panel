@@ -40,31 +40,30 @@ export const data2 = {
     },
   ],
 };
-const AnalysisCenter= ({onClickOpenModal}) => {
+const AnalysisCenter = ({ onClickOpenModal }) => {
   return (
     <div className="analysis">
       <div className="analysis-wrp">
         <div className="row">
-    
           <div className="col-md-4 analysis-box">
-            <div className="analysis-item two">
-              <h5>TOPLAM WHATSAPP SORU</h5>
-              <p>45</p>
-              <span>kez whatsapp tıklandı.</span>
+            <div className="analysis-item second">
+              <h5 className="analysis-item__title">TOPLAM WHATSAPP SORU</h5>
+              <p className="analysis-item__count">45</p>
+              <span className="analysis-item__desc">kez whatsapp tıklandı.</span>
             </div>
           </div>
           <div className="col-md-4 analysis-box">
-            <div className="analysis-item two">
-              <h5>TOPLAM INSTAGRAM GÖRÜNTÜLENME</h5>
-              <p>92</p>
-              <span>kez sayfanız görünlendi.</span>
+            <div className="analysis-item second">
+              <h5 className="analysis-item__title">TOPLAM INSTAGRAM GÖRÜNTÜLENME</h5>
+              <p className="analysis-item__count">92</p>
+              <span className="analysis-item__desc">kez sayfanız görünlendi.</span>
             </div>
           </div>
           <div className="col-md-4 analysis-box">
-            <div className="analysis-item two">
-              <h5>TOPLAM KAZANCINIZ</h5>
-              <p>458 ₺</p>
-              <span>kazancınız var.</span>
+            <div className="analysis-item second">
+              <h5 className="analysis-item__title">TOPLAM KAZANCINIZ</h5>
+              <p className="analysis-item__count">458 ₺</p>
+              <span className="analysis-item__desc">kazancınız var.</span>
             </div>
           </div>
         </div>

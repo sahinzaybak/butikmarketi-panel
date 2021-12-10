@@ -135,7 +135,7 @@ const FormUpdate = ({ optionsList, selectedProductInfo }) => {
   };
 
   return (
-    <div className="add-product__prop">
+    <div className="product-operation__prop">
       <Form onFinish={onFinishForm} autoComplete="off" form={form}>
         <div className="row">
           <div className="col-md-4 p-0">
@@ -143,8 +143,8 @@ const FormUpdate = ({ optionsList, selectedProductInfo }) => {
               {
                 ({ imageList, onImageUpload }) => (
                   <>
-                    <div className="add-product__prop-wrp">
-                      <div className="add-product__image" onClick={onImageUpload}>
+                    <div className="product-operation__prop-wrp">
+                      <div className="product-operation__image" onClick={onImageUpload}>
                         <div className="d-flex align-items-center justify-content-center h-100">
                           <PlusOutlined />
                           <h6 className="ml-2">Ürün Resimleri Ekle</h6>
@@ -157,7 +157,7 @@ const FormUpdate = ({ optionsList, selectedProductInfo }) => {
                           </div>
 
                           {!isAllUploadImage &&
-                            <div className="add-product__loading">
+                            <div className="product-operation__loading">
                               <Spin indicator={<LoadingOutlined className="spin" style={{ fontSize: 40 }} spin />} />
                             </div>
                           }
@@ -191,7 +191,7 @@ const FormUpdate = ({ optionsList, selectedProductInfo }) => {
           <div className="col-md-8 pl-5">
             <div className="row">
               <div className="col-md-8">
-                <Form.Item name="productName" rules={[{ required: true, message: 'Please input your username!' }]}
+                <Form.Item name="productName" rules={[{ required: true, message: 'Ürün ismini giriniz.' }]}
                   shouldUpdate={(prevValues, curValues) => {
                     return prevValues?.productName !== curValues?.productName;
                   }}>
@@ -199,7 +199,7 @@ const FormUpdate = ({ optionsList, selectedProductInfo }) => {
                 </Form.Item>
               </div>
               <div className="col-md-4">
-                <Form.Item name="price" rules={[{ required: true, message: 'Please input your password!' }]}
+                <Form.Item name="price" rules={[{ required: true, message: 'Ürün fiyatını giriniz.' }]}
                   shouldUpdate={(prevValues, curValues) => {
                     return prevValues?.price !== curValues?.price;
                   }}>
@@ -207,27 +207,26 @@ const FormUpdate = ({ optionsList, selectedProductInfo }) => {
                 </Form.Item>
               </div>
             </div>
-            <Form.Item name="desc" rules={[{ required: true, message: 'Please input your password!' }]}
+            <Form.Item name="desc" rules={[{ required: true, message: 'Ürün açıklaması giriniz.' }]}
               shouldUpdate={(prevValues, curValues) => {
                 return prevValues?.desc !== curValues?.desc;
               }}>
               <Input.TextArea placeholder="Ürün Açıklaması" />
             </Form.Item>
-            <Form.Item name="link" rules={[{ required: true, message: 'Please input your password!' }]}
+            <Form.Item name="link" rules={[{ required: true, message: 'Ürün instagram linkini giriniz.' }]}
               shouldUpdate={(prevValues, curValues) => {
                 return prevValues?.link !== curValues?.link;
               }}>
               <Input placeholder="Ürün İnstagram Linki" />
             </Form.Item>
 
-            <div className="add-product__prop-filters mt-4 pt-2">
+            <div className="product-operation__prop-filters mt-4 pt-2">
               <div className="row">
                 {optionsList != "" && optionsList.filter.map((option, index) => (
                   <>
                     {option.main_title == "price" ? "" :
                       <div className="col-md-4" key={index}>
                         <h6>{option.main_title_text}</h6>
-
                         {option.main_title == "gender" ?
                           <Radio.Group onChange={(e) => setSelectedRadio(e.target.value)} defaultValue={selectedProductInfo.gender}>
                             <Space direction="vertical">
@@ -256,7 +255,7 @@ const FormUpdate = ({ optionsList, selectedProductInfo }) => {
             </div>
           </div>
         </div>
-        <Button type="primary" htmlType="submit">Gönder</Button>
+        <Button className="button" htmlType="submit">Ürünü Güncelle</Button>
       </Form>
     </div>
 

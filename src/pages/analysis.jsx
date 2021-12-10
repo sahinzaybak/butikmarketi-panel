@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import '../assets/scss/analysis.scss'
 import { Modal } from "antd";
 import AnalysisTop from '../components/analysis/analysis-top'
 import AnalysisCenter from '../components/analysis/analysis-center'
 import TableAnalysis from '../components/analysis/table-analysis'
 import AnalysisTableModal from '../components/analysis/modal-analysis-table'
+import '../assets/scss/analysis.scss'
 
 const Analysis = () => {
   const [preview, setPreview] = useState(false);
