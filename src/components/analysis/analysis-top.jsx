@@ -40,7 +40,7 @@ export const data2 = {
     },
   ],
 };
-const AnalysisTop = ({ onClickOpenModal }) => {
+const AnalysisTop = ({ onClickOpenModal,analysisValues }) => {
   return (
     <div className="analysis">
       <div className="analysis-wrp">
@@ -48,28 +48,28 @@ const AnalysisTop = ({ onClickOpenModal }) => {
           <div className="col-md-3 analysis-box">
             <div className="analysis-item">
               <h5 className="analysis-item__title">TOPLAM MAĞAZA ZİYARET</h5>
-              <p className="analysis-item__count">172</p>
+              <p className="analysis-item__count">{analysisValues.butikVisitCount}</p>
               <span className="analysis-item__desc">kez profiliniz görüntülendi.</span>
             </div>
           </div>
           <div className="col-md-3 analysis-box">
             <div className="analysis-item">
               <h5 className="analysis-item__title">TOPLAM ÜRÜN GÖRÜNRÜLEME</h5>
-              <p className="analysis-item__count">265</p>
+              <p className="analysis-item__count">{analysisValues.totalProductClickCount}</p>
               <span className="analysis-item__desc">kez ürünleriniz görüntülendi.</span>
             </div>
           </div>
           <div className="col-md-3 analysis-box">
             <div className="analysis-item">
               <h5 className="analysis-item__title">TOPLAM ÜRÜN SAYINIZ</h5>
-              <p className="analysis-item__count">12</p>
+              <p className="analysis-item__count">{analysisValues.productCount}</p>
               <span className="analysis-item__desc">adet ürününüz yayında.</span>
             </div>
           </div>
           <div className="col-md-3 analysis-box">
             <div className="analysis-item">
               <h5 className="analysis-item__title">TOPLAM SİPARİŞ SAYINIZ</h5>
-              <p className="analysis-item__count">18</p>
+              <p className="analysis-item__count">{analysisValues.orderCount}</p>
               <span className="analysis-item__desc">kez sipariş aldınız.</span>
             </div>
           </div>

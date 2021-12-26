@@ -17,7 +17,7 @@ const ProductArea = ({ onClickOpenModal, onClickOpenModalUpdate, onClickOpenModa
   return (
     <div className="d-flex flex-wrap flex-column">
       <div className="product-operation__header d-flex align-items-center justify-content-between mb-4">
-        <h4>Ürünleriniz (20)</h4>
+        <h4>Ürünleriniz ({butikProducts.length})</h4>
         <div className="product-operation__box d-flex mb-2" onClick={() => onClickOpenModal()}>
           <PlusOutlined className="product-operation__plus-icon" />
           <h6 className="ml-2">Ürün Ekle</h6>
@@ -27,7 +27,7 @@ const ProductArea = ({ onClickOpenModal, onClickOpenModalUpdate, onClickOpenModa
         {butikProducts == "" ? <ProductListContentLoader />
           :
           <>
-            {butikProducts.products.map((product, index) => (
+            {butikProducts.map((product, index) => (
               <div className="product-item" key={index}>
                 <div className="product-item__info" onClick={() => onClickOpenModalUpdate(product)}>
                   <div className="product-image mb-2">

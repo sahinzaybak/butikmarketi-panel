@@ -20,7 +20,7 @@ const PanelCategory = ({ mainCategoryList, subCategoryList, categoryTitleList })
   function selectedSubCategory(e) { // Alt Kategori Seçimi (Giyim, Ayakkabı, Çanta&Aksesuar ..vs)
     const subCatValue = e.target.value
     setSubCategoryValue(subCatValue)
-    dispatch(fetchCategoryTitleList(mainCategoryValue, subCatValue)); //kategorileri getir.
+    dispatch(fetchCategoryTitleList(subCatValue)); //kategorileri getir.
   };
 
   function selectedCategory(e) { // Kategori Seçimi (T-shirt, Pantolon, Etek ..vs)
@@ -39,7 +39,7 @@ const PanelCategory = ({ mainCategoryList, subCategoryList, categoryTitleList })
             <h6>Ana Kategori Seçin</h6>
             <Radio.Group onChange={selectedMainCategory} value={mainCategoryValue}>
               <Space direction="vertical">
-                {mainCategoryList != "" && mainCategoryList.categories.map((mainCategory, index) => (
+                {mainCategoryList != "" && mainCategoryList[0].map((mainCategory, index) => (
                   <>
                     {mainCategory.slug.includes("ayakkabi-canta") || mainCategory.slug.includes("saat-aksesuar") ? ""
                       :
@@ -57,7 +57,7 @@ const PanelCategory = ({ mainCategoryList, subCategoryList, categoryTitleList })
             <h6>Alt Kategori Seçin</h6>
             <Radio.Group onChange={selectedSubCategory} value={subCategoryValue}>
               <Space direction="vertical">
-                {subCategoryList != "" && subCategoryList.categories.map((subCategory, index) => (
+                {subCategoryList != "" && subCategoryList.map((subCategory, index) => (
                   <Radio value={subCategory.slug} key={index}>{subCategory.title}</Radio>
                 ))}
               </Space>
@@ -69,7 +69,7 @@ const PanelCategory = ({ mainCategoryList, subCategoryList, categoryTitleList })
             <h6>Kategori Seçin</h6>
             <Radio.Group onChange={selectedCategory} defaultValue={categoryValue}>
               <Space direction="vertical">
-                {categoryTitleList != "" && categoryTitleList.categories.map((category, index) => (
+                {categoryTitleList != "" && categoryTitleList.map((category, index) => (
                   <Radio value={category.title} defaultValue={category.filter_title} slug={category.slug} key={index}>{category.title}</Radio>
                 ))}
               </Space>

@@ -9,5 +9,5 @@ export const IsAddedProduct = () => {
 //Giriş yapıldı mı?
 export const IsLogin = () => {
   let authInfo = useSelector((state) => state.auth.authInfo);
-  if (authInfo != "") return authInfo.data.status == 200 ? true : false;
+  if (authInfo != "") return authInfo.status == 200 ? true : false;
 };

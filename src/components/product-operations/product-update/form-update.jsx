@@ -22,7 +22,7 @@ const FormUpdate = ({ optionsList, selectedProductInfo }) => {
 
   let imageSliderArray = []
   let selectedCheckboxes = []
-  selectedProductInfo.size.forEach(element => { //checkboxlar seçili gelsin diye.
+  selectedProductInfo.sizes.forEach(element => { //checkboxlar seçili gelsin diye.
     selectedCheckboxes.push(element.size_title)
   });
 

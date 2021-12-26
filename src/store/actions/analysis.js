@@ -1,16 +1,16 @@
 import axios from "axios";
 
-export const fetchButikProducts = () => {
+export const fetchAnalysisValues = () => {
   return async (dispatch) => {
-    await axios.get(`http://localhost:5000/api/butik/products`, {
+    await axios.get(`http://localhost:5000/api/butik/homestats`, {
       headers: {
         'Authorization': `Bearer ${localStorage.getItem("butik_token")}`
       },
     })
       .then((value) => {
         dispatch({
-          type: "FETCH_BUTIK_PRODUCTS",
-          payload: value.data.data
+          type: "ANALYSIS_VALUES",
+          payload: value.data
         });
       });
   };
