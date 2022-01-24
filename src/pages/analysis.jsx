@@ -17,26 +17,29 @@ const Analysis = () => {
   const [title, setTitle] = useState("")
 
   let analysisValues = useSelector(state => state.analysis.analysisValues)
+  let butikInfo = useSelector(state => state.butik.butikInfo)
+  console.log(analysisValues)
   useEffect(() => {
-    dispatch(fetchAnalysisValues())
-  }, []);
+    if (butikInfo.butik_email != undefined) dispatch(fetchAnalysisValues(butikInfo.butik_email))
+  }, [butikInfo]);
 
   return (
     <div className="wrapper analysis-page">
       <div className="wrapper-header">
         <h3>Genel Analiz</h3>
       </div>
-      <div className="wrapper-main">
-        <div className="wrapper-main__item">
-          <AnalysisTop
-            analysisValues={analysisValues}
-            onClickOpenModal={(color, title) => {
-              setPreview(true)
-              setColor(color)
-              setTitle(title)
-            }} />
-        </div>
-        <div className="wrapper-main__item mt-4">
+      {analysisValues &&
+        <div className="wrapper-main">
+          <div className="wrapper-main__item">
+            <AnalysisTop
+              analysisValues={analysisValues}
+              onClickOpenModal={(color, title) => {
+                setPreview(true)
+                setColor(color)
+                setTitle(title)
+              }} />
+          </div>
+          <div className="wrapper-main__item mt-4">
           <AnalysisCenter
             analysisValues={analysisValues}
             onClickOpenModal={(color, title) => {
@@ -48,18 +51,19 @@ const Analysis = () => {
         <div className="wrapper-main__item mt-4">
           <TableAnalysis />
         </div>
-        <Modal
-          visible={preview}
-          footer={null}
-          destroyOnClose={true}
-          width={780}
-          centered
-          onCancel={() => { setPreview(false) }}>
-          <div className="add-product__modal">
-            <AnalysisTableModal color={color} title={title} />
-          </div>
-        </Modal>
-      </div>
+          <Modal
+            visible={preview}
+            footer={null}
+            destroyOnClose={true}
+            width={780}
+            centered
+            onCancel={() => { setPreview(false) }}>
+            <div className="add-product__modal">
+              <AnalysisTableModal color={color} title={title} />
+            </div>
+          </Modal>
+        </div>
+      }
     </div>
   );
 }

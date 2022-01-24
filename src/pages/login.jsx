@@ -18,7 +18,6 @@ const Login = () => {
   const history = useHistory();
   let isLogin = IsLogin(); //helpers
   let authInfo = useSelector((state) => state.auth.authInfo);
-  console.log(authInfo)
   // Form Submit
   function onFinish(form_values) {
     dispatch(login(form_values));
@@ -29,7 +28,7 @@ const Login = () => {
     if (isInitialMount.current) isInitialMount.current = false; // ilk sayfa yüklendiğinde useEffect çalışmasın. Mount & Update ayrımı => useRef()
     else {
       store.addNotification({
-        message: isLogin ? authInfo.data.message : authInfo.message,
+        message: isLogin ? "başarılı" : "as",
         type: isLogin ? "success" : "danger",
         insert: "top",
         width: isLogin ? 280 : 420,
@@ -42,8 +41,7 @@ const Login = () => {
       if (isLogin) { //true ise
         setTimeout(() => {
           history.push("/genel-analiz")
-          localStorage.setItem("butik_token", authInfo.data.token)
-          localStorage.setItem("butik_info", JSON.stringify(authInfo.data.profile))
+          localStorage.setItem("butik_token", authInfo.data.jwt)
         }, 2500);
       }
     }
