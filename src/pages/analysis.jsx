@@ -15,10 +15,10 @@ const Analysis = () => {
   const [preview, setPreview] = useState(false);
   const [color, setColor] = useState("")
   const [title, setTitle] = useState("")
+  const [dataValues, setDataValues] = useState("")
 
   let analysisValues = useSelector(state => state.analysis.analysisValues)
   let butikInfo = useSelector(state => state.butik.butikInfo)
-  console.log(analysisValues)
   useEffect(() => {
     if (butikInfo.butik_email != undefined) dispatch(fetchAnalysisValues(butikInfo.butik_email))
   }, [butikInfo]);
@@ -33,19 +33,21 @@ const Analysis = () => {
           <div className="wrapper-main__item">
             <AnalysisTop
               analysisValues={analysisValues}
-              onClickOpenModal={(color, title) => {
+              onClickOpenModal={(color, title, dataValues) => {
                 setPreview(true)
                 setColor(color)
                 setTitle(title)
+                setDataValues(dataValues)
               }} />
           </div>
           <div className="wrapper-main__item mt-4">
           <AnalysisCenter
             analysisValues={analysisValues}
-            onClickOpenModal={(color, title) => {
+            onClickOpenModal={(color, title, dataValues) => {
               setPreview(true)
               setColor(color)
               setTitle(title)
+              setDataValues(dataValues)
             }} />
         </div>
         <div className="wrapper-main__item mt-4">
@@ -59,7 +61,7 @@ const Analysis = () => {
             centered
             onCancel={() => { setPreview(false) }}>
             <div className="add-product__modal">
-              <AnalysisTableModal color={color} title={title} />
+              <AnalysisTableModal color={color} title={title} dataValues={dataValues} />
             </div>
           </Modal>
         </div>

@@ -3,9 +3,12 @@ import { Table, Radio, DatePicker, Space } from 'antd';
 import '../../assets/scss/atoms/table.scss'
 import '../../assets/scss/atoms/chart.scss'
 import locale from 'antd/es/date-picker/locale/tr_TR';
+import { date } from "faker/locale/zh_TW";
 
-const AnalysisTableModal = ({ color, title }) => {
+const AnalysisTableModal = ({ color, title, dataValues }) => {
+  console.log(dataValues)
   const [selectedDate, setSelectedDate] = useState(false);
+  const [tableShowCountValue, setTableShowCountValue] = useState(15);
   const { RangePicker } = DatePicker;
   const columns = [
     {
@@ -25,100 +28,18 @@ const AnalysisTableModal = ({ color, title }) => {
     },
   ];
 
-  const data = [
-    {
-      key: '1',
-      order: 1,
-      date: "11.09.2021",
-      count: 12,
-    },
-    {
-      key: '2',
-      order: 2,
-      date: "12.09.2021",
-      count: 46,
-    },
-    {
-      key: '3',
-      order: 3,
-      date: "13.09.2021",
-      count: 67,
-    },
-    {
-      key: '4',
-      order: 4,
-      date: "14.09.2021",
-      count: 84,
-    },
-    {
-      key: '5',
-      order: 5,
-      date: "16.09.2021",
-      count: 95,
-    },
-    {
-      key: '6',
-      order: 6,
-      date: "11.09.2021",
-      count: 12,
-    },
-    {
-      key: '7',
-      order: 7,
-      date: "12.09.2021",
-      count: 46,
-    },
-    {
-      key: '8',
-      order: 8,
-      date: "13.09.2021",
-      count: 67,
-    },
-    {
-      key: '9',
-      order: 9,
-      date: "14.09.2021",
-      count: 84,
-    },
-    {
-      key: '10',
-      order: 10,
-      date: "16.09.2021",
-      count: 95,
-    },
-    {
-      key: '11',
-      order: 11,
-      date: "11.09.2021",
-      count: 12,
-    },
-    {
-      key: '12',
-      order: 12,
-      date: "12.09.2021",
-      count: 46,
-    },
-    {
-      key: '13',
-      order: 13,
-      date: "13.09.2021",
-      count: 67,
-    },
-    {
-      key: '14',
-      order: 14,
-      date: "14.09.2021",
-      count: 84,
-    },
-    {
-      key: '15',
-      order: 15,
-      date: "16.09.2021",
-      count: 95,
-    },
-  ];
+  //tabloda sadece istenilen verileri almak için gelen datayı mapledim. Tablo yapısı bu parametreler ile çalışıyor.
+  const tableRow = dataValues.slice(0, tableShowCountValue).map((item, key) => {
+    return {
+      key: tableShowCountValue - key,
+      order: tableShowCountValue - key,
+      date: item.date,
+      count: item.clickCount
+    }
+  })
 
   function selectedRadioValue(value) {
+    setTableShowCountValue(value)
     if (value == "date_picker") setSelectedDate(true)
     else setSelectedDate(false)
   }
@@ -138,7 +59,7 @@ const AnalysisTableModal = ({ color, title }) => {
           <RangePicker className="w-100 pt-2 pb-2 mt-3" locale={locale} />
         }
       </div>
-      <Table className={color} columns={columns} dataSource={data} pagination={{ pageSize: 15 }} scroll={{ y: 400 }} />
+      <Table className={color} columns={columns} dataSource={tableRow} pagination={{ pageSize: 15 }} scroll={{ y: 400 }} />
     </div>
   );
 }

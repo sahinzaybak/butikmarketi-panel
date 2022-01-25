@@ -22,7 +22,6 @@ export const options = {
 };
 
 const AnalysisTop = ({ onClickOpenModal, analysisValues }) => {
-
   // 7 Günlük Mağaza Profi Sayfası Görüntülenme >
   const labels = [];
   const butikVieswDatas = []
@@ -99,7 +98,7 @@ const AnalysisTop = ({ onClickOpenModal, analysisValues }) => {
                 <div className="analysis-chart__item">
                   <p className="analysis-chart__title mb-3">7 Günlük Mağaza Profil Sayfanızın Görüntülenme İstatistikleri</p>
                   <Bar options={options} data={butikProfileDatas} />
-                  <p className="analysis-chart__more purple" onClick={() => { onClickOpenModal("defaultColor", "Mağaza Profil Sayfası Görüntülenme Detaylı Bilgi") }}>Daha detaylı incele</p>
+                  <p className="analysis-chart__more purple" onClick={() => { onClickOpenModal("defaultColor", "Mağaza Profil Sayfası Görüntülenme Detaylı Bilgi", analysisValues.clicks.reverse()) }}>Daha detaylı incele</p>
                 </div>
               </div>
               <div className="col-md-6">

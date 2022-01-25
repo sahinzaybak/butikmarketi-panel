@@ -21,7 +21,6 @@ export const options = {
   },
 };
 
-
 const AnalysisCenter = ({ onClickOpenModal, analysisValues }) => {
   const whatsappLabels = [];
   const whatsappAllClicksValue = []
@@ -31,7 +30,7 @@ const AnalysisCenter = ({ onClickOpenModal, analysisValues }) => {
   const instagramClicksValue = []
 
   if (analysisValues != "") {
-    
+
     // 7 Günlük Whatsapp Soru Sorma İstatistikleri >
     analysisValues.products.data.forEach(attribute => { // Tüm whatsapp click verilerimi aldım.
       attribute.attributes.whatsappClicks.forEach(element => {
@@ -116,14 +115,14 @@ const AnalysisCenter = ({ onClickOpenModal, analysisValues }) => {
                 <div className="analysis-chart__item">
                   <p className="analysis-chart__title  mb-3">7 Günlük Whatsapp Soru Sorma İstatistikleri</p>
                   <Bar options={options} data={whatsappClicksDatas} />
-                  <p className="analysis-chart__more light-green" onClick={() => { onClickOpenModal("light-green", "Günlük Whatsapp Soru Sayısı Detaylı Bilgi") }}>Daha detaylı incele</p>
+                  <p className="analysis-chart__more light-green" onClick={() => { onClickOpenModal("light-green", "Günlük Whatsapp Soru Sayısı Detaylı Bilgi", whatsappAllClicksValue) }}>Daha detaylı incele</p>
                 </div>
               </div>
               <div className="col-md-6">
                 <div className="analysis-chart__item">
                   <p className="analysis-chart__title  mb-3">7 Günlük Instagram Görüntülenme İstatistikleri</p>
                   <Bar options={options} data={instagramClicksDatas} />
-                  <p className="analysis-chart__more orange" onClick={() => { onClickOpenModal("orange", "Günlük Kazancınız Detaylı Bilgi") }}>Daha detaylı incele</p>
+                  <p className="analysis-chart__more orange" onClick={() => { onClickOpenModal("orange", "Günlük Kazancınız Detaylı Bilgi", instagramAllClicksValue) }}>Daha detaylı incele</p>
                 </div>
               </div>
             </div>
