@@ -1,6 +1,6 @@
 
 import { Modal, Input, Form, Button } from "antd";
-const OrderModal = ({ preview, onCancel, destroyForm }) => {
+const OrderModal = ({ preview, onCancel, destroyForm, othersOrderDetail }) => {
   return (
     <Modal
       visible={preview}
@@ -15,31 +15,29 @@ const OrderModal = ({ preview, onCancel, destroyForm }) => {
           <div className="row">
             <div className="col-md-12 mt-2">
               <div className="row">
-                <div className="col-md-4">
+                <div className="col-md-6">
                   <div className="order-detail__item">
                     <span>Ürün Adı</span>
-                    <p>Erkek Oduncu Gömlek</p>
+                    <p>{othersOrderDetail?.attributes?.products?.data[0]?.attributes?.title}</p>
                   </div>
                   <div className="order-detail__item">
                     <span>Sipariş Veren</span>
-                    <p>Şahin Zaybak</p>
+                    <p>{othersOrderDetail?.attributes?.nameSurname}</p>
                   </div>
                   <div className="order-detail__item">
                     <span>Telefon No</span>
-                    <p>0539 506 69 51</p>
+                    <p>{othersOrderDetail?.attributes?.phone}</p>
                   </div>
                 </div>
-                <div className="col-md-8">
+                <div className="col-md-6">
                   <div className="order-detail__item">
                     <span>Açıklama</span>
-                    <p>Lütfen ürünün 8 den sonra getirmeyin, işe gittiğim için evde olmuyorum.</p>
+                    <p>{othersOrderDetail?.attributes?.description}</p>
                   </div>
-
                   <div className="order-detail__item">
                     <span>Adres</span>
-                    <p>Denizabdal Mahallesi, Günaydın Sokak, İkizler Apartmanı, No:37 D:6</p>
+                    <p>{othersOrderDetail?.attributes?.address}</p>
                   </div>
-
                 </div>
               </div>
             </div>
@@ -48,32 +46,32 @@ const OrderModal = ({ preview, onCancel, destroyForm }) => {
                 <div className="col-md-3 order-detail__col">
                   <div className="order-detail__item">
                     <span>Adet</span>
-                    <p>x1</p>
+                    <p>x{othersOrderDetail?.attributes?.count}</p>
                   </div>
                 </div>
                 <div className="col-md-3 order-detail__col">
                   <div className="order-detail__item">
                     <span>Beden</span>
-                    <p>L</p>
+                    <p>{othersOrderDetail?.attributes?.size}</p>
                   </div>
                 </div>
                 <div className="col-md-3 order-detail__col">
                   <div className="order-detail__item">
                     <span>Renk</span>
-                    <p>Mavi</p>
+                    <p>{othersOrderDetail?.attributes?.color}</p>
                   </div>
                 </div>
                 <div className="col-md-3 order-detail__col">
                   <div className="order-detail__item">
                     <span>Toplam Fiyat</span>
-                    <p>122.90 ₺</p>
+                    <p>{othersOrderDetail?.attributes?.totalPrice} ₺</p>
                   </div>
                 </div>
               </div>
             </div>
             <div className="order-actions  w-100">
               <div className="order-item column status d-block pl-0 pt-0 shadow-none">
-                <span>Beklemede</span>
+              {!othersOrderDetail?.attributes?.status ? <span>Beklemede</span> : <span>Kargoda</span>}
               </div>
               <p>Müşterinizin kargosunu takip edebilmesi için, ürününüzü kargoya verdikten sonra <br /> <strong>kargo numarasını</strong> girmeniz gerekmektedir.</p>
               <div className="d-flex">

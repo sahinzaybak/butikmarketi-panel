@@ -1,7 +1,7 @@
-const OrderTable = ({onClickOpenModalUpdate}) => {
+const OrderTable = ({ onClickOpenModalUpdate, orderList }) => {
   return (
     <div className="order-wrp">
-      <div className="order-list">
+      <div className="order-list text-center">
         <div className="order-header">
           <div className="order-item">
             <span>Sipariş No</span>
@@ -16,108 +16,60 @@ const OrderTable = ({onClickOpenModalUpdate}) => {
             <span>Sipariş Veren</span>
           </div>
           <div className="order-item">
-            <span>Ürün</span>
+            <span>Telefon No</span>
           </div>
           <div className="order-item">
-            <span>Fiyat</span>
+            <span>Sipariş Verilen Ürün</span>
+          </div>
+          <div className="order-item">
+            <span>Ürün Fiyatı</span>
           </div>
           <div className="order-item">
             <span>Adet</span>
           </div>
           <div className="order-item">
-            <span>Total</span>
+            <span>Toplam Fiyat</span>
           </div>
           <div className="order-item">
             <span>Detaylar</span>
           </div>
         </div>
-        <div className="order-list__wrp">
-          <div className="order-item column">
-            <span>#10214513115</span>
+        {orderList.map((order, index) => (
+          <div className="order-list__wrp" key={index}>
+            <div className="order-item column">
+              <span>#{order.attributes.orderNo}</span>
+            </div>
+            <div className="order-item column">
+              <span>{order.attributes.orderDate}</span>
+            </div>
+            <div className="order-item column status">
+              {!order.attributes.status ? <span>Beklemede</span> : <span>Kargoda</span>}
+            </div>
+            <div className="order-item column">
+              <span>{order.attributes.nameSurname}</span>
+            </div>
+            <div className="order-item column">
+              <span>{order.attributes.phone}</span>
+            </div>
+            <div className="order-item column">
+              <span>{order.attributes.products.data[0].attributes.title}</span>
+            </div>
+            <div className="order-item column">
+              <span>{order.attributes.products.data[0].attributes.price} ₺</span>
+            </div>
+            <div className="order-item column">
+              <span>{order.attributes.count} </span>
+            </div>
+            <div className="order-item column">
+              <span>{order.attributes.totalPrice} ₺</span>
+            </div>
+            <div className="order-item column" onClick={() => {
+              onClickOpenModalUpdate(true, order);
+            }}>
+              <span>Detayları Gör / Kargoya Gönder</span>
+            </div>
           </div>
-          <div className="order-item column">
-            <span>22/02/2021</span>
-          </div>
-          <div className="order-item column status">
-            <span>Beklemede</span>
-          </div>
-          <div className="order-item column">
-            <span>Şahin ZAYBAK</span>
-          </div>
-          <div className="order-item column">
-            <span>Erkek Oduncu Gömlek</span>
-          </div>
-          <div className="order-item column">
-            <span>80.90 ₺</span>
-          </div>
-          <div className="order-item column">
-            <span>2 </span>
-          </div>
-          <div className="order-item column">
-            <span>160.99₺</span>
-          </div>
-          <div className="order-item column">
-            <span>Detayları Gör</span>
-          </div>
-        </div>
-        <div className="order-list__wrp">
-          <div className="order-item column">
-            <span>#10214513115</span>
-          </div>
-          <div className="order-item column">
-            <span>22/02/2021</span>
-          </div>
-          <div className="order-item column status">
-            <span>Beklemede</span>
-          </div>
-          <div className="order-item column">
-            <span>Şahin ZAYBAK</span>
-          </div>
-          <div className="order-item column">
-            <span>Erkek Oduncu Gömlek</span>
-          </div>
-          <div className="order-item column">
-            <span>80.90 ₺</span>
-          </div>
-          <div className="order-item column">
-            <span>2 </span>
-          </div>
-          <div className="order-item column">
-            <span>160.99₺</span>
-          </div>
-          <div className="order-item column">
-            <span>Detayları Gör</span>
-          </div>
-        </div>
-        <div className="order-list__wrp">
-          <div className="order-item column">
-            <span>#10214513115</span>
-          </div>
-          <div className="order-item column">
-            <span>22/02/2021</span>
-          </div>
-          <div className="order-item column status">
-            <span>Beklemede</span>
-          </div>
-          <div className="order-item column">
-            <span>Şahin ZAYBAK</span>
-          </div>
-          <div className="order-item column">
-            <span>Erkek Oduncu Gömlek</span>
-          </div>
-          <div className="order-item column">
-            <span>80.90 ₺</span>
-          </div>
-          <div className="order-item column">
-            <span>2 </span>
-          </div>
-          <div className="order-item column">
-            <span>160.99 ₺</span>
-          </div>
-          <div className="order-item column" onClick={() => onClickOpenModalUpdate(true)}>
-            <span>Detayları Gör</span>
-          </div>
-        </div>
+        ))}
       </div>
     </div>
   )
